@@ -1,0 +1,1014 @@
+---
+title: "Practical Functions: <br>**Practically Magic**"
+subtitle: "Salt Lake City R User Group<br>2025-08-08(09)"
+author: "Nicholas Tierney"
+institute: Statistical Consultatnt
+format: 
+  revealjs:
+    theme: [blood, extra.scss]
+    incremental: true
+    slide-number: c
+    show-slide-number: all
+    footer: "njtierney.github.io/talk-funfun-saltlake/"
+editor: visual
+execute: 
+  echo: true
+  warning: false
+  cache: true
+  freeze: true
+---
+
+```{r}
+#| label: library
+#| include: false
+library(tidyverse)
+library(knitr)
+library(colorspace)
+library(naniar)
+library(visdat)
+library(icons)
+library(naniar)
+library(tidyverse)
+library(ggrain)
+library(tinytable)
+```
+
+```{r}
+#| label: source-r-files
+#| echo: false
+#| message: false
+#| output: false
+lapply(list.files(here::here("R"), full.names = TRUE), source)
+```
+
+```{r}
+#| label: helpers
+#| include: false
+
+icons_fa <- icons::fontawesome
+icon_box <- icon_style(icons_fa$solid$`box-open`, fill = "#f0a800")
+icon_link <- icon_style(icons_fa$solid$link, fill = "#f0a800")
+icon_twitter <- icon_style(icons_fa$brands$twitter, fill = "#f0a800")
+icon_github <- icon_style(icons_fa$brands$github, fill = "#f0a800")
+icon_plane <- icon_style(icons_fa$solid$`paper-plane`, fill = "#f0a800")
+
+
+as_table <- function(...) knitr::kable(..., format='html', digits = 3)
+
+theme_set(
+  theme_grey(base_size = 16) +
+  theme(
+    legend.position = "bottom",
+    plot.background = element_rect(fill = "transparent"),
+    legend.background = element_rect(fill = "transparent")
+  )
+)
+
+# **ni**ck's **pa**lette
+nipa <- list(red = "#c03018",
+             orange = "#f0a800",
+             green = "#609048",
+             purple = "#484878",
+             light_purple = "#A3A3BB",
+             light_green = "#AFC7A3",
+             light_orange = "#F7D37F",
+             light_red = "#DF978B",
+             pale_purple = "#ECECF1",
+             pale_green = "#D7E3D1",
+             pale_orange = "#FBE9BF",
+             pale_red = "#EFCBC4")
+
+```
+
+# Audience
+
+1.  Someone who has **never** written a function
+2.  Someone who has written a **couple** of functions
+3.  The **sceptic** function user
+4.  The **regular** function user
+
+::: notes
+I want to start by saying that I want to cover a range of different audiences in this talk. I want this talk to be helpful for someone who has never written a function, through to someone who has written a couple of functions - the person who is suspicious of functions and doesn't really get the point - the regular function user, and also, I hope I can convey something useful to the various members of the R Core team and R developers.
+
+note: Make this a line graph or something?
+
+:::
+
+# Outline
+
+1.  **Why** I care about functions
+2.  Function **Fundamentals**
+3.  Functions in **Practice**
+
+## Prior Art {background-image="images/prior_art_wide.png" background-size="contain"}
+
+::: notes
+The thing that I want to communicate here is "I've learnt a lot from others - and in some ways this talk is just me remixing the important messages that others have already spent a good deal more time doing". So I want to start by firstly acknowledging five people whose talks and work have helped me understand functions in a deeper way to become a better programmer, and I want to note a key thing that they helped me understand.
+:::
+
+<!-- ![](images/clipboard-4268136480.png) -->
+
+::: notes
+Key points I wanted to be able to understand and communicate what I was doing
+
+I was Frustrated by not being able express those ideas
+
+Functions were the form of expression that I wanted
+
+Why didn't I see that earlier? It's because functions weren't explained to me in terms of chunking/decluttering/breaking down complexity.
+
+They were introduced as "celcius to farenheit", or "mean center a value" or "find odd numbers".
+
+It's not that those things weren't useful
+:::
+
+##  {background-image="images/bmjopen-missmap.jpg" background-size="contain"}
+
+## The impact of missingness?
+
+```{r}
+#| echo: false
+airquality %>% 
+  select(Temp,
+         Solar.R) %>% 
+  head() %>% 
+  tt() %>% 
+  style_tt(
+    i = 1:4,
+    j = 1:2,
+    background = "teal",
+    color = "white",
+    bold = TRUE
+  ) %>% 
+  style_tt(
+    i = 5:6,
+    j = 1:2,
+    background = "coral",
+    color = "white",
+    bold = TRUE
+  )
+```
+
+## The impact of missingness?
+
+```{r}
+#| echo: false
+var_missing <- airquality$Solar.R
+var_interest <- airquality$Temp
+which_missing <- which(is.na(var_missing))
+which_complete <- which(!is.na(var_missing))
+
+var_interest_miss <- var_interest[which_missing]
+var_interest_complete <- var_interest[which_complete]
+
+na_aq <- nabular(airquality) 
+ggplot(na_aq,
+       aes(x = Solar.R_NA,
+           y = Temp,
+           fill = Solar.R_NA,
+           colour = Solar.R_NA)) + 
+  geom_rain(
+    boxplot.args = list(color = "black"),
+    violin.args = list(color = "black"),
+    point.args = list(alpha = 0.5)
+  ) +
+  labs(
+    x = ""
+  ) + 
+  scale_x_discrete(
+    limits = c("NA", "!NA"),
+    labels = c("Solar.R Missing", "Solar.R Present")
+    ) + 
+  coord_flip() +
+  scale_fill_manual(values = c("#008080", "coral")) + 
+  scale_colour_manual(values = c("#008080", "coral")) + 
+  ggthemes::theme_par() +
+  theme(
+    legend.position = "none"
+  )
+  
+```
+
+## A script:
+
+```{r}
+#| echo: true
+x <- na.omit(airquality$Temp[which(is.na(airquality$Solar.R))])
+y <- na.omit(airquality$Temp[which(!is.na(airquality$Solar.R))])
+
+x_mean_diff <- (x - (sum(x) / length(x)))^2
+sum_x_mean_diff <- sum(x_mean_diff)
+s_x <- sqrt((1 / length(x)) * sum_x_mean_diff)
+se_x <- s_x / sqrt(length(x))
+
+y_mean_diff <- (y - (sum(y) / length(y)))^2
+sum_y_mean_diff <- sum(y_mean_diff)
+s_x <- sqrt((1 / length(y)) * sum_y_mean_diff)
+se_y <- s_x / sqrt(length(y))
+
+numerator <- mean(x) - mean(y)
+denominator <- sqrt(se_x + se_y)
+
+result <- numerator / denominator
+
+```
+
+## A(n) improved script:
+
+```{r}
+#| echo: true
+var_missing <- airquality$Solar.R
+var_interest <- airquality$Temp
+which_missing <- which(is.na(var_missing))
+which_complete <- which(!is.na(var_missing))
+var_interest_miss <- var_interest[which_missing]
+var_interest_complete <- var_interest[which_complete]
+result <- t.test(var_interest_miss, y = var_interest_complete)
+result
+```
+
+## Can I use other variables?
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1,2|7,8"
+var_missing <- airquality$Ozone
+var_interest <- airquality$Wind
+which_missing <- which(is.na(var_missing))
+which_complete <- which(!is.na(var_missing))
+var_interest_miss <- var_interest[which_missing]
+var_interest_complete <- var_interest[which_complete]
+result_ozone_wind <- t.test(var_interest_miss, y = var_interest_complete)
+result_ozone_wind
+```
+
+## "Spot the difference"
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|1|2"
+var_missing <- airquality$Ozone
+var_interest <- airquality$Wind
+which_missing <- which(is.na(var_missing))
+which_complete <- which(!is.na(var_missing))
+var_interest_miss <- var_interest[which_missing]
+var_interest_complete <- var_interest[which_complete]
+result_ozone_wind <- t.test(var_interest_miss, y = var_interest_complete)
+
+# I just like DO IT ALL AGAIN??
+var_missing <- airquality$Solar.R
+var_interest <- airquality$Temp
+which_missing <- which(is.na(var_missing))
+which_complete <- which(!is.na(var_missing))
+var_interest_miss <- var_interest[which_missing]
+var_interest_complete <- var_interest[which_complete]
+result_solar_temp <- t.test(var_interest_miss, y = var_interest_complete)
+```
+
+::: notes
+playing "spot the difference" felt wrong!
+:::
+
+## ...eventually...a function!
+
+```{r}
+#| echo: true
+missingness_impact <- function(when_missing, is_different){
+  when_missing_index <- which(is.na(when_missing))
+  when_complete_index <- which(!is.na(when_missing))
+  
+  is_different_miss <- is_different[when_missing_index]
+  is_different_complete <- is_different[when_complete_index]
+  
+  result <- t.test(is_different_miss, y = is_different_complete)
+  
+  result
+  
+}
+```
+
+## Functions = expression
+
+```{r}
+#| echo: true
+#| code-line-numbers: "2"
+missingness_impact(
+  when_missing = airquality$Solar.R,
+  is_different = airquality$Temp
+)
+```
+
+## Functions = expression
+
+```{r}
+#| echo: true
+#| code-line-numbers: "2"
+missingness_impact(
+  when_missing = airquality$Ozone,
+  is_different = airquality$Temp
+)
+```
+
+## Teaching functions?
+
+```{r}
+celcius_to_farenheit <- function(x){
+  (x * 9/5) + 32
+}
+
+celcius_to_farenheit(0)
+celcius_to_farenheit(25)
+```
+
+. . .
+
+**Trivialises** functions
+
+. . .
+
+Functions should be **relevant** to you
+
+. . .
+
+Functions are **expression** they are **ideas**
+
+. . .
+
+Functions **manage complexity**
+
+::: notes
+It doesn't showcase the power It makes it seem trivial
+:::
+
+## DRY: Don't **Repeat** Yourself
+
+> If you **copy and paste** the same code **3 times**, write a function
+
+. . .
+
+```{r}
+#| code-line-numbers: "|1:2|6|8:9|13"
+
+is_different <- airquality$Temp
+when_missing_index <- which(is.na(airquality$Ozone))
+when_complete_index <- which(!is.na(airquality$Ozone))
+is_different_miss <- is_different[when_missing_index]
+is_different_complete <- is_different[when_complete_index]
+result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+
+is_different <- airquality$Wind
+when_missing_index <- which(is.na(airquality$Solar.R))
+when_complete_index <- which(!is.na(airquality$Solar.R))
+is_different_miss <- is_different[when_missing_index]
+is_different_complete <- is_different[when_complete_index]
+result_solar_wind <- t.test(is_different_miss, is_different_complete)
+  
+```
+
+::: notes
+You've only written this out twice But you'll revisit it more than once You've got to manually parse what is different The structure is the same It's like a game of spot the difference idea: show images where two Where is the difference? - THERE IS NO DIFFERENCE - YOU HAVE WASTED YOUR TIME
+:::
+
+## DRY: Don't **re-read** Yourself\*
+
+> If you **re-read** your code 3 times, write a function
+
+```{r}
+#| code-line-numbers: "|1:2|6|8:9|13"
+
+is_different <- airquality$Temp
+when_missing_index <- which(is.na(airquality$Ozone))
+when_complete_index <- which(!is.na(airquality$Ozone))
+is_different_miss <- is_different[when_missing_index]
+is_different_complete <- is_different[when_complete_index]
+result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+
+is_different <- airquality$Wind
+when_missing_index <- which(is.na(airquality$Solar.R))
+when_complete_index <- which(!is.na(airquality$Solar.R))
+is_different_miss <- is_different[when_missing_index]
+is_different_complete <- is_different[when_complete_index]
+result_solar_wind <- t.test(is_different_miss, is_different_complete)
+  
+```
+
+::: aside
+\*naming credit: Miles McBain
+:::
+
+## How to **write** a function
+
+. . .
+
+Functions are tools for **managing complexity**
+
+. . .
+
+AKA as **abstraction** or **abstracting away**
+
+. . .
+
+So, **what complexity** do we want to manage?
+
+. . .
+
+What do we want to **abstract away**?
+
+. . .
+
+```{r}
+#| code-line-numbers: "|1|2|3|6"
+is_different <- airquality$Temp
+when_missing_index <- which(is.na(airquality$Ozone))
+when_complete_index <- which(!is.na(airquality$Ozone))
+is_different_miss <- is_different[when_missing_index]
+is_different_complete <- is_different[when_complete_index]
+result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+```
+
+. . .
+
+Start with the **bones**
+
+. . .
+
+```{r}
+#| eval: false
+misstest <- function(Temp, Ozone){
+  ## Paste text into body 
+}
+```
+
+## Writing functions is **writing**
+
+. . .
+
+What am I **interested** in?
+
+```{r}
+#| code-line-numbers: "|1|2|3|4"
+misstest <- function(Temp, Ozone){
+  is_different <- airquality$Temp
+  when_missing_index <- which(is.na(airquality$Ozone))
+  when_complete_index <- which(!is.na(airquality$Ozone))
+  is_different_miss <- is_different[when_missing_index]
+  is_different_complete <- is_different[when_complete_index]
+  result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+}
+```
+
+## Writing functions is **writing**
+
+What do I **name** things?
+
+```{r}
+#| code-line-numbers: "|1|2|3|4"
+misstest <- function(is_different, Ozone){
+  # is_different <- airquality$Temp
+  when_missing_index <- which(is.na(airquality$Ozone))
+  when_complete_index <- which(!is.na(airquality$Ozone))
+  is_different_miss <- is_different[when_missing_index]
+  is_different_complete <- is_different[when_complete_index]
+  result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+}
+```
+
+## Writing functions is **writing**
+
+Naming things can be **tricky**; that's OK
+
+```{r}
+#| code-line-numbers: "|1|2|3|4|8"
+misstest <- function(is_different, when_missing){
+  # is_different <- airquality$Temp
+  # when_missing_index <- which(is.na(airquality$Ozone))
+  when_missing_index <- which(is.na(when_missing))
+  when_complete_index <- which(!is.na(when_missing))
+  is_different_miss <- is_different[when_missing_index]
+  is_different_complete <- is_different[when_complete_index]
+  result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+}
+```
+
+## Writing functions is **writing**
+
+We **return** the last thing
+
+```{r}
+#| code-line-numbers: "|8|9"
+misstest <- function(is_different, when_missing){
+  # is_different <- airquality$Temp
+  # when_missing_index <- which(is.na(airquality$Ozone))
+  when_missing_index <- which(is.na(when_missing))
+  when_complete_index <- which(!is.na(when_missing))
+  is_different_miss <- is_different[when_missing_index]
+  is_different_complete <- is_different[when_complete_index]
+  result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+  result_ozone_temp
+}
+```
+
+## Writing functions is **writing**
+
+Cleaning up **old lettuce** (removing unused comments)
+
+```{r}
+#| code-line-numbers: "2,3"
+misstest <- function(is_different, when_missing){
+  # is_different <- airquality$Temp
+  # when_missing_index <- which(is.na(airquality$Ozone))
+  when_missing_index <- which(is.na(when_missing))
+  when_complete_index <- which(!is.na(when_missing))
+  is_different_miss <- is_different[when_missing_index]
+  is_different_complete <- is_different[when_complete_index]
+  result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+  result_ozone_temp
+}
+```
+
+## Writing functions is **writing**
+
+Cleaning up **old lettuce** (removing unused comments)
+
+```{r}
+#| code-line-numbers: "|1"
+misstest <- function(is_different, when_missing){
+  when_missing_index <- which(is.na(when_missing))
+  when_complete_index <- which(!is.na(when_missing))
+  is_different_miss <- is_different[when_missing_index]
+  is_different_complete <- is_different[when_complete_index]
+  result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+  result_ozone_temp
+}
+```
+
+## Writing functions is **writing**
+
+**Name** the function something that **evokes** the **action**
+
+. . .
+
+```{r}
+#| code-line-numbers: "1|"
+missingness_impact <- function(is_different, when_missing){
+  when_missing_index <- which(is.na(when_missing))
+  when_complete_index <- which(!is.na(when_missing))
+  is_different_miss <- is_different[when_missing_index]
+  is_different_complete <- is_different[when_complete_index]
+  result_ozone_temp <- t.test(is_different_miss, is_different_complete)
+  result_ozone_temp
+}
+```
+
+. . .
+
+You need to **use** the function
+
+## Writing functions is **writing**
+
+You need to **use** the function
+
+. . .
+
+```{r}
+missingness_impact(
+  when_missing = airquality$Ozone,
+  is_different = airquality$Temp
+)
+```
+
+## Writing functions is **writing**
+
+And **write** the output to a **variable**
+
+```{r}
+#| code-line-numbers: "|1|6"
+temp_difference_ozone_missing <- missingness_impact(
+  when_missing = airquality$Ozone,
+  is_different = airquality$Temp
+)
+
+temp_difference_ozone_missing
+```
+
+## Writing functions is **writing**
+
+A **process** for writing a function
+
+-   **Copy** text into body
+-   **Identify** complexity to manage
+-   **Abstract** the complexity
+-   Writing functions is **iterative**, Just like **regular writing**
+
+## Circling back to **DRY**
+
+-   The problem is **complex code**
+-   DRY treats the symptom - **repetition**
+-   But the **cause** is expression and reasoning
+-   A function isn't **only** needed when you repeat code
+
+. . .
+
+```{r}
+# Tell me why this is a bad idea!
+blindly_functionalising <- function(){
+  is_different <- airquality$Temp
+  when_missing_index <- which(is.na(airquality$Ozone))
+  when_complete_index <- which(!is.na(airquality$Ozone))
+  is_different_miss <- is_different[when_missing_index]
+  is_different_complete <- is_different[when_complete_index]
+  result_ozone_temp <- t.test(is_different_miss,
+                              is_different_complete)
+}
+```
+
+::: notes
+And this is bad - WHY is this bad?
+
+-   Focussing on solving repetition
+-   You (probably) don't want to just take a data analysis and turn it into a single function.
+:::
+
+# Functions are about **expression**
+
+-   **Explain and express ideas**
+-   **Manage complexity**
+
+. . .
+
+DRY has benefits - but I think **expression** and **complexity** are more powerful
+
+-   Avoiding copy/paste avoids **easy errors**!
+-   Make changes in one place - **awesome**!
+
+## Code is for people
+
+> \[W\]e want to establish the idea that a computer language is not just a way of getting a computer to perform operations but rather that it is a novel formal medium for expressing ideas about methodology. Thus, **programs must be written for people to read, and only incidentally for machines to execute**.
+
+— [**Structure and Interpretation of Computer Programs**](https://mitpress.mit.edu/9780262510875/). Abelson, Sussman, and Sussman, 1984.
+
+# You are always collaborating...**with your future self**
+
+## Naming things is **hard**
+
+> There are only two hard things in Computer Science: cache invalidation and **naming things**.
+
+-- Phil Karlton
+
+. . .
+
+What does this function **do**?
+
+```{r}
+myfun <- function(x){
+  (x * 9/5) + 32
+}
+```
+
+## Naming things is **hard**
+
+Converting temperature?
+
+```{r}
+temperature_conversion <- function(x){
+  (x * 9/5) + 32
+}
+```
+
+. . .
+
+Clearly state `input_to_output()`
+
+```{r}
+celcius_to_farenheit <- function(x){
+  (x * 9/5) + 32
+}
+```
+
+. . .
+
+Name argument and intermediate variables
+
+```{r}
+celcius_to_farenheit <- function(celcius){
+  farenheit <- (celcius * 9/5) + 32
+  farenheit
+}
+```
+
+## Iteration: **Skateboard** -\> Car
+
+![](images/spotify-howtobuildmvp.jpg){fig-align="center" fig-height="500"}
+
+(heard via [**Stat545 functions chapter**](https://stat545.com/functions-part1.html))
+
+## What makes functions **hard**?
+
+```{r}
+celcius_to_farenheit <- function(celcius){
+  (celcius * 9/5) + 32
+}
+```
+
+. . .
+
+The idea of inputs and outputs isn't hard
+
+. . .
+
+What **is** hard it taking code, (like the code in a data analysis) and **finding the parts that need to change**
+
+. . .
+
+> There's a level of "I got it to work" and there's a level of "It works, and I can reason about it"
+
+-- Joe Cheng [**You have to be able to reason about it \| Data Science Hangout**](https://youtu.be/J8qbRYa4430?si=GnCpXk_Go7_PzOJa&t=2380)
+
+## I can **reason** about it
+
+> ...how do you take all this complexity and break it down into smaller pieces
+
+. . .
+
+> each of which you can **reason about**
+
+. . .
+
+> each of which you can **hold in your head**
+
+. . .
+
+> each of which you can look at and be like "yup, I can fully ingest this entire function definition, I can read it line by line and prove to myself this is definitely correct...
+
+<!-- , **IF** the functions its calling don't have bugs, **AND** if it's called in the **right way**...then the result will be correct. -->
+
+## I can **reason** about it
+
+> So software engineering... is a lot about this: How do you **break up inherently complicated things** that we are trying to do into small **pieces that are individually easy to reason about**. That's half the battle...
+
+. . .
+
+> The other half of the battle is how do we combine them in ways that can be reliable and also easy to reason about
+
+## How many things can you hold in your head?
+
+> how do you take all this complexity and break it down into smaller pieces, each of which you can **reason about**, each of which you can **hold in your head**
+
+. . .
+
+Our working memory = 7 +/- 2 (5-9) **chunks**
+
+. . .
+
+["**The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information**"](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) George A. Miller, *Psychological Review*, 1956, 63 (2)
+
+## How many things can you hold in your head?
+
+Memory is not limited by bits, but by **chunks**
+
+. . .
+
+1-8-0-0-1-3-1-0-8-6
+
+. . .
+
+**1800** 131 **086**
+
+. . .
+
+So practice breaking code into **chunks**
+
+::: notes
+celcius to farenheit: boom. done.
+
+The idea of inputs and outputs isn't hard.
+
+To motivate the process of re-reading your work
+
+Chunking and moving from numbers
+
+Miles' SSA talk: Let's borrow some key ideas from how we structure books: table of contents as a key to help.
+:::
+
+## Breaking code into **chunks**
+
+::::: columns
+::: {.column width="45%"}
+-   50 **lines** of code
+
+-   Is not 50 **ideas**
+
+-   **Chunk** code into ideas
+
+-   **Reason with** them
+
+-   Find the **complexity**
+
+-   **Abstract** complexity
+:::
+
+::: {.column width="\"45%"}
+![](images/code-chunking.png){height="600"}
+:::
+:::::
+
+# Demo: Process of cleaning up a data analysis
+
+![](images/repo-ozed.png)
+
+##  {background-image="images/abs-education-data-markup.png" background-size="contain"}
+
+# Debugging should be taught with functions
+
+-   Otherwise we build a box **we can't look inside** and fix
+-   Or give power tools **without safety equipment**
+-   Or writing with software that writes **un-editable PDFs**
+-   We need to teach what happens when things go wrong
+
+# You should be learning debugging when learning functions
+
+-   An error when writing can feel like punishment
+-   But hanging out with errors is a normal state
+-   It's like an expression problem in your writing
+
+# Using `browser()`
+
+```{r}
+#| eval: false
+# example function code here - something useful though
+tidy_education <- function(data, names){
+  names <- trimws(names)
+  browser() # jump into this point in the function
+  # "n" Next line
+  tidied <- 
+  # "s" Step into highlighted function
+  combined <- combine_custom_data(tidied, data)
+  # "f" Finish execution of loop or function
+  # "Q" Quit browser
+  # "help" - loads a list of helper code
+}
+```
+
+##  {background-image="images/roger-user-developer-spectrum.png" background-size="contain"}
+
+##  {background-image="images/hadley-practice-programmer.png" background-size="contain"}
+
+## Practitioner \<\> Programmer
+
+> The ambiguity \[of the S language\] is real and goes to a key objective: we wanted users to be able to begin in an **interactive environment**, where they did not consciously think of themselves as programming. Then as their needs became clearer and their sophistication increased, they should be able to **slide gradually into programming**, when the language and system aspects would become more important
+
+[\*\* -- John Chambers, "Stages in the evolution of S"\*\*](https://blog.revolutionanalytics.com/2014/01/john-chambers-recounts-the-history-of-s-and-r.html)
+
+[**(Heard via 'tapply to Tidyverse', by Roger Peng)**]())
+
+::: notes
+I want to emphasise two things here: 1. The creators of S, the ancestor to the R language, **wanted you to program**. But they also want you to practice code, and work interactively. , and 2. What I'm telling you now isn't like a brand new idea or anything. It's been here all along.
+:::
+
+# Summary: Cleaning up a data analysis
+
+-   Functions helped us uncover the thing we care about - **year**
+-   Debugging should be taught alongside functions
+
+::: notes
+The idea of chunking up code to break down complexity. communicate the idea that this is an iterative process - as Hadley said in his "design of everyday functions" talk, you need to write, then rewrite, then re-re-re-re-write functions, in the same way that it takes time to write text to communicate to others. (might be a good time to 2. Model how you do this part of your work. How do you move from writing code to writing functions. Writing functions doesn't have to be this "sometimes" activity - it should be part of a healthy data analysis. I will go through some common parts of a data analysis, and demonstrate a process for writing out steps as functions, and also special tools for creating, and understanding functions (fnmate, browser (also debugonce and recover). I want to cover this idea that you can use functions to manage your own complexity. 1. If you are doing a data analysis - moving from multiple scripts 3. Model how you do this part of your work. How do you move from writing code to writing functions. Writing functions doesn't have to be this "sometimes" activity - it should be part of a healthy data analysis. To do this I want to model this behaviour by walking through a data analysis, and demonstrating writing functions, and also special tools for creating, and understanding functions (fnmate, browser (also debugonce and recover)) - Other ideas to demonstrate in this demo - Maybe I want to simulate restarting R and coming back to it - Ah man, I don't want to re-run this data analysis now.
+
+# Let's use this overview of functions to do the thing
+
+-   introduce Debugging: the tools of the trade
+-   story of learning debugging
+-   The poor mans (other version?) debugger
+-   introduce browser
+
+Tell a story about how I was taught debugging when I first started programming and I just did not understand the reason why I would care. The reason it turns out - is that I didn't yet know about the idea of interactive vs non-interactive, or rather - the practitioner-programmer spectrum. And I guess that this is summarised by a nice slide from Hadley (<https://www.youtube.com/watch?v=Qne86lxjgtg>) - "you hear your code scream" vs "things break and people scream at you".
+
+Hadley talks about this idea of "code is a conversation" - when things break, or don't work, if you're working in this script-land, then you know when this breaks, and you might be able to jump back into things.
+
+But if you're in programmer land, there's a wall between you and your code...sometimes.
+
+Summarise by talking about how we slide from the user \<--\> developer seamlessly. This is actually what R is designed to do!:
+
+![](images/clipboard-2863518647.png)
+:::
+
+# `convey_key_ideas()`
+
+-   **Good** functions
+-   **Teaching** functions
+-   My **challenge** to you
+
+# **Good** functions
+
+1.  Manage **complexity**
+2.  Explain and express **ideas**
+3.  Can be **individually reasoned** with
+4.  Take **iteration**
+
+# **Teaching** functions
+
+-   Emphasise using functions to **express ideas**
+    -   Avoiding repetion is a symptom of needing a function
+-   Demonstrate **process**
+    -   Demos & writing
+-   Try and use practical functions, not only **toy** ones
+-   Teach **debugging** alongside functions
+
+# My **challenge** to you
+
+-   Start **sprinkling** functions into daily use
+-   use `browser()` or other debugging tools
+-   Read other people's code - peer review!
+-   Question me - does this make sense?
+
+::: notes
+How do you get better at writing functions in your own life?
+:::
+
+# **Thanks**
+
+::::: columns
+::: {.column width="40%"}
+-   Miles McBain
+-   Nick Golding
+-   Saras Windecker
+-   August Hao
+-   Chitra Saraswati
+:::
+
+::: {.column width="40%"}
+-   Hadley Wickham
+-   Jenny Bryan
+-   Joe Cheng
+-   Roger Peng
+:::
+:::::
+
+# References
+
+::::: columns
+::: {.column width="45%"}
+-   [**You have to be able to reason about it**](https://www.youtube.com/watch?v=J8qbRYa4430)
+-   [**Many Models**](https://www.youtube.com/watch?v=rz3_FDVt9eg)
+-   [**The design of everyday functions**](https://www.youtube.com/watch?v=Qne86lxjgtg)
+-   [**Our colour of magic**](https://www.youtube.com/watch?v=ywK4qs5dJsg)
+-   [**Code Smells and Feels**](https://www.youtube.com/watch?v=7oyiPBjLAWY)
+-   [**From tapply to Tidyverse**](https://www.youtube.com/watch?v=5033jBHFiHE&t=1s)
+:::
+
+::: {.column width="45%"}
+-   [**Advanced R: Functions**](https://r4ds.had.co.nz/functions.html)
+-   [**Tidy Design Principles**](https://design.tidyverse.org/)
+-   [**Lexical Scope and Statistical Computing**](https://www.stat.auckland.ac.nz/~ihaka/downloads/lexical.pdf)
+-   [**stat545 chapter on functions**](https://stat545.com/functions-part1.html)
+:::
+:::::
+
+# Colophon
+
+-   Slides made using [**quarto**](https://github.com/quarto-dev/quarto)
+-   Colours taken + modified from [**lorikeet theme from ochRe**](https://github.com/ropenscilabs/ochRe) [**njtierney/njt-talks**](github.com/njtierney/njt-talks) <!-- - Header font is **Josefin Sans** --> <!-- - Body text font is **Montserrat** --> <!-- - Code font is **Fira Mono** --> <!-- - template available:  -->
+
+# Learning more
+
+`r icon_link` [**talk link**]()
+
+`r icon_github` njtierney
+
+`r icon_plane` nicholas.tierney\@gmail.com
+
+# Bonus round
+
+# `debug()` and friends
+
+-   `debug(function_name)`
+    -   As if "browser" is put at top of function
+    -   Saves you needing to inject `browser()` into code
+    -   Will run on `function_name()` until end of session
+    -   to turn off: `undebug(function_name)`
+-   `debugonce(function_name)`
+    -   Does `debug(function_name)` **once**
+
+# Good function \n bad function
+
+# Other debugging tools
+
+-   `options(error = recover)`: watch Miles McBain's [**"stop. breath. recover" video**]()
+-   `options(error = browser)`: Will drop a `browser()` in your code when you hit an error. Kind of scary.
+-   `options(error = NULL)`: turn off these special modes
+
+## `fnmate`: milesmcbain/fnmate
+
+![](images/fnmate.gif)
+
+## `targets`: ropensci/targets
+
+![](images/targets.png)
+
+## Other fun reading
+
+-   [**How knowing Lisp destroyed my programming career**](https://web.archive.org/web/20201216043719/http://coding.derkeiler.com/Archive/Lisp/comp.lang.lisp/2006-04/msg01644.html)
+-   [**Inner platform effect**](https://en.wikipedia.org/wiki/Inner-platform_effect)
+-   [**Greenspuns 10th rule**](https://en.wikipedia.org/wiki/Greenspun%27s_tenth_rule)
+-   [**The telescope rule**](https://wiki.c2.com/?TelescopeRule)
+
+# **End.**

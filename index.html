@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.31">
+
+  <meta name="author" content="Nicholas Tierney">
+  <title>Practical Functions:  Practically Magic</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-6bbe7f292558fad43fd770e2237a2dba.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Practical Functions: <br><strong>Practically Magic</strong></h1>
+  <p class="subtitle">Salt Lake City R User Group<br>2025-08-08(09)</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Nicholas Tierney 
+</div>
+        <p class="quarto-title-affiliation">
+            Telethon Kids Institute
+          </p>
+    </div>
+</div>
+
+</section>
+<section id="audience" class="title-slide slide level1 center">
+<h1>Audience</h1>
+<ol type="1">
+<li class="fragment">Someone who has <strong>never</strong> written a function</li>
+<li class="fragment">Someone who has written a <strong>couple</strong> of functions</li>
+<li class="fragment">The <strong>sceptic</strong> function user</li>
+<li class="fragment">The <strong>regular</strong> function user</li>
+<li class="fragment"><strong>Various</strong> members of the <strong>R Core Team</strong></li>
+</ol>
+<aside class="notes">
+<p>I want to start by saying that I want to cover a range of different audiences in this talk. I want this talk to be helpful for someone who has never written a function, through to someone who has written a couple of functions - the person who is suspicious of functions and doesn’t really get the point - the regular function user, and also, I hope I can convey something useful to the various members of the R Core team and R developers.</p>
+<p>note: Make this a line graph or something?</p>
+<pre><code>1.  Thomas Lumley
+2.  Simon Urbanek
+3.  Paul Murrell</code></pre>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+
+<section>
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
+<ol type="1">
+<li class="fragment"><strong>Why</strong> I care about functions</li>
+<li class="fragment">Function <strong>Fundamentals</strong></li>
+<li class="fragment">Functions in <strong>Practice</strong></li>
+</ol>
+</section>
+<section id="prior-art" class="slide level2" data-background-image="images/prior_art_wide.png" data-background-size="contain">
+<h2>Prior Art</h2>
+<aside class="notes">
+<p>The thing that I want to communicate here is “I’ve learnt a lot from others - and in some ways this talk is just me remixing the important messages that others have already spent a good deal more time doing”. So I want to start by firstly acknowledging five people whose talks and work have helped me understand functions in a deeper way to become a better programmer, and I want to note a key thing that they helped me understand.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ![](images/clipboard-4268136480.png) -->
+<aside class="notes">
+<p>Key points I wanted to be able to understand and communicate what I was doing</p>
+<p>I was Frustrated by not being able express those ideas</p>
+<p>Functions were the form of expression that I wanted</p>
+<p>Why didn’t I see that earlier? It’s because functions weren’t explained to me in terms of chunking/decluttering/breaking down complexity.</p>
+<p>They were introduced as “celcius to farenheit”, or “mean center a value” or “find odd numbers”.</p>
+<p>It’s not that those things weren’t useful</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section" class="slide level2" data-background-image="images/bmjopen-missmap.jpg" data-background-size="contain">
+<h2></h2>
+</section>
+<section id="the-impact-of-missingness" class="slide level2">
+<h2>The impact of missingness?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+
+      function styleCell_yoczsfd87stczvwn60x8(i, j, css_id) {
+          var table = document.getElementById("tinytable_yoczsfd87stczvwn60x8");
+          var cell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function spanCell_yoczsfd87stczvwn60x8(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_yoczsfd87stczvwn60x8");
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+        }
+
+        // Get all cells that need to be removed
+        const cellsToRemove = [];
+        for (let r = 0; r < rowspan; r++) {
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue; // Skip the target cell
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) {
+              cellsToRemove.push(cell);
+            }
+          }
+        }
+
+        // Remove all cells
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // Set rowspan and colspan of the target cell if it exists
+        if (targetCell) {
+          targetCell.rowSpan = rowspan;
+          targetCell.colSpan = colspan;
+        }
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '6', j: 0 }, { i: '6', j: 1 },  ], css_id: 'tinytable_css_btaugh5qu4ncmp3sqr51',}, 
+          { positions: [ { i: '5', j: 0 }, { i: '5', j: 1 },  ], css_id: 'tinytable_css_1doyxvj2f94cq3ndj4g2',}, 
+          { positions: [ { i: '1', j: 0 }, { i: '2', j: 0 }, { i: '4', j: 0 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '3', j: 0 }, { i: '1', j: 1 }, { i: '4', j: 1 },  ], css_id: 'tinytable_css_2tjnsr3yukhlz1gyn5yf',}, 
+          { positions: [ { i: '0', j: 0 }, { i: '0', j: 1 },  ], css_id: 'tinytable_css_aejayuav0nw0esmwe8ow',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_yoczsfd87stczvwn60x8(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_btaugh5qu4ncmp3sqr51, .table th.tinytable_css_btaugh5qu4ncmp3sqr51 { font-weight: bold; color: white; background-color: #FF7F50; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_1doyxvj2f94cq3ndj4g2, .table th.tinytable_css_1doyxvj2f94cq3ndj4g2 { font-weight: bold; color: white; background-color: #FF7F50; }
+      .table td.tinytable_css_2tjnsr3yukhlz1gyn5yf, .table th.tinytable_css_2tjnsr3yukhlz1gyn5yf { font-weight: bold; color: white; background-color: #008080; }
+      .table td.tinytable_css_aejayuav0nw0esmwe8ow, .table th.tinytable_css_aejayuav0nw0esmwe8ow { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_yoczsfd87stczvwn60x8" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col" data-row="0" data-col="0">Temp</th>
+                <th scope="col" data-row="0" data-col="1">Solar.R</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="0">67</td>
+                  <td data-row="1" data-col="1">190</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="0">72</td>
+                  <td data-row="2" data-col="1">118</td>
+                </tr>
+                <tr>
+                  <td data-row="3" data-col="0">74</td>
+                  <td data-row="3" data-col="1">149</td>
+                </tr>
+                <tr>
+                  <td data-row="4" data-col="0">62</td>
+                  <td data-row="4" data-col="1">313</td>
+                </tr>
+                <tr>
+                  <td data-row="5" data-col="0">56</td>
+                  <td data-row="5" data-col="1">NA</td>
+                </tr>
+                <tr>
+                  <td data-row="6" data-col="0">66</td>
+                  <td data-row="6" data-col="1">NA</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+</div>
+</section>
+<section id="the-impact-of-missingness-1" class="slide level2">
+<h2>The impact of missingness?</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<section id="a-script" class="slide level2">
+<h2>A script:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(airquality<span class="sc">$</span>Temp[<span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))])</span>
+<span id="cb2-2"><a href=""></a>y <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(airquality<span class="sc">$</span>Temp[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))])</span>
+<span id="cb2-3"><a href=""></a></span>
+<span id="cb2-4"><a href=""></a>x_mean_diff <span class="ot">&lt;-</span> (x <span class="sc">-</span> (<span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb2-5"><a href=""></a>sum_x_mean_diff <span class="ot">&lt;-</span> <span class="fu">sum</span>(x_mean_diff)</span>
+<span id="cb2-6"><a href=""></a>s_x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((<span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(x)) <span class="sc">*</span> sum_x_mean_diff)</span>
+<span id="cb2-7"><a href=""></a>se_x <span class="ot">&lt;-</span> s_x <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span>
+<span id="cb2-8"><a href=""></a></span>
+<span id="cb2-9"><a href=""></a>y_mean_diff <span class="ot">&lt;-</span> (y <span class="sc">-</span> (<span class="fu">sum</span>(y) <span class="sc">/</span> <span class="fu">length</span>(y)))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb2-10"><a href=""></a>sum_y_mean_diff <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_mean_diff)</span>
+<span id="cb2-11"><a href=""></a>s_x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((<span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(y)) <span class="sc">*</span> sum_y_mean_diff)</span>
+<span id="cb2-12"><a href=""></a>se_y <span class="ot">&lt;-</span> s_x <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(y))</span>
+<span id="cb2-13"><a href=""></a></span>
+<span id="cb2-14"><a href=""></a>numerator <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb2-15"><a href=""></a>denominator <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(se_x <span class="sc">+</span> se_y)</span>
+<span id="cb2-16"><a href=""></a></span>
+<span id="cb2-17"><a href=""></a>result <span class="ot">&lt;-</span> numerator <span class="sc">/</span> denominator</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="an-improved-script" class="slide level2">
+<h2>A(n) improved script:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Solar.R</span>
+<span id="cb3-2"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb3-3"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
+<span id="cb3-4"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
+<span id="cb3-5"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
+<span id="cb3-6"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
+<span id="cb3-7"><a href=""></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span>
+<span id="cb3-8"><a href=""></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  var_interest_miss and var_interest_complete
+t = -0.98706, df = 6.2689, p-value = 0.3602
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -17.669258   7.436381
+sample estimates:
+mean of x mean of y 
+ 73.00000  78.11644 </code></pre>
+</div>
+</div>
+</section>
+<section id="can-i-use-other-variables" class="slide level2">
+<h2>Can I use other variables?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="1,2|7,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Ozone</span>
+<span id="cb5-2"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb5-3"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
+<span id="cb5-4"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
+<span id="cb5-5"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
+<span id="cb5-6"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
+<span id="cb5-7"><a href=""></a>result_ozone_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span>
+<span id="cb5-8"><a href=""></a>result_ozone_wind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  var_interest_miss and var_interest_complete
+t = 0.60911, df = 63.646, p-value = 0.5446
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.8999377  1.6893132
+sample estimates:
+mean of x mean of y 
+10.256757  9.862069 </code></pre>
+</div>
+</div>
+</section>
+<section id="spot-the-difference" class="slide level2">
+<h2>“Spot the difference”</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Ozone</span>
+<span id="cb7-2"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb7-3"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
+<span id="cb7-4"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
+<span id="cb7-5"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
+<span id="cb7-6"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
+<span id="cb7-7"><a href=""></a>result_ozone_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span>
+<span id="cb7-8"><a href=""></a></span>
+<span id="cb7-9"><a href=""></a><span class="co"># I just like DO IT ALL AGAIN??</span></span>
+<span id="cb7-10"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Solar.R</span>
+<span id="cb7-11"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb7-12"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
+<span id="cb7-13"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
+<span id="cb7-14"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
+<span id="cb7-15"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
+<span id="cb7-16"><a href=""></a>result_solar_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside class="notes">
+<p>playing “spot the difference” felt wrong!</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="eventuallya-function" class="slide level2">
+<h2>…eventually…a function!</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
+<span id="cb8-2"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb8-3"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb8-4"><a href=""></a>  </span>
+<span id="cb8-5"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb8-6"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb8-7"><a href=""></a>  </span>
+<span id="cb8-8"><a href=""></a>  result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, <span class="at">y =</span> is_different_complete)</span>
+<span id="cb8-9"><a href=""></a>  </span>
+<span id="cb8-10"><a href=""></a>  result</span>
+<span id="cb8-11"><a href=""></a>  </span>
+<span id="cb8-12"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="functions-expression" class="slide level2">
+<h2>Functions = expression</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb9-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Solar.R,</span>
+<span id="cb9-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb9-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  is_different_miss and is_different_complete
+t = -0.98706, df = 6.2689, p-value = 0.3602
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -17.669258   7.436381
+sample estimates:
+mean of x mean of y 
+ 73.00000  78.11644 </code></pre>
+</div>
+</div>
+</section>
+<section id="functions-expression-1" class="slide level2">
+<h2>Functions = expression</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb11-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Ozone,</span>
+<span id="cb11-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb11-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  is_different_miss and is_different_complete
+t = 0.026831, df = 60.447, p-value = 0.9787
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.546847  3.643306
+sample estimates:
+mean of x mean of y 
+ 77.91892  77.87069 </code></pre>
+</div>
+</div>
+</section>
+<section id="teaching-functions" class="slide level2">
+<h2>Teaching functions?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb13-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb13-3"><a href=""></a>}</span>
+<span id="cb13-4"><a href=""></a></span>
+<span id="cb13-5"><a href=""></a><span class="fu">celcius_to_farenheit</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 32</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">celcius_to_farenheit</span>(<span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 77</code></pre>
+</div>
+</div>
+<div class="fragment">
+<p><strong>Trivialises</strong> functions</p>
+</div>
+<div class="fragment">
+<p>Functions should be <strong>relevant</strong> to you</p>
+</div>
+<div class="fragment">
+<p>Functions are <strong>expression</strong> they are <strong>ideas</strong></p>
+</div>
+<div class="fragment">
+<p>Functions <strong>manage complexity</strong></p>
+<aside class="notes">
+<p>It doesn’t showcase the power It makes it seem trivial</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="dry-dont-repeat-yourself" class="slide level2">
+<h2>DRY: Don’t <strong>Repeat</strong> Yourself</h2>
+<blockquote>
+<p>If you <strong>copy and paste</strong> the same code <strong>3 times</strong>, write a function</p>
+</blockquote>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="|1:2|6|8:9|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb17-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb17-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb17-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb17-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb17-6"><a href=""></a>result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb17-7"><a href=""></a></span>
+<span id="cb17-8"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb17-9"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb17-10"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb17-11"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb17-12"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb17-13"><a href=""></a>result_solar_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside class="notes">
+<p>You’ve only written this out twice But you’ll revisit it more than once You’ve got to manually parse what is different The structure is the same It’s like a game of spot the difference idea: show images where two Where is the difference? - THERE IS NO DIFFERENCE - YOU HAVE WASTED YOUR TIME</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="dry-dont-re-read-yourself" class="slide level2">
+<h2>DRY: Don’t <strong>re-read</strong> Yourself*</h2>
+<blockquote>
+<p>If you <strong>re-read</strong> your code 3 times, write a function</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="|1:2|6|8:9|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb18-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb18-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb18-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb18-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb18-6"><a href=""></a>result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb18-7"><a href=""></a></span>
+<span id="cb18-8"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb18-9"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb18-10"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb18-11"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb18-12"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb18-13"><a href=""></a>result_solar_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<aside><div>
+<p>*naming credit: Miles McBain</p>
+</div></aside></section>
+<section id="how-to-write-a-function" class="slide level2">
+<h2>How to <strong>write</strong> a function</h2>
+<div class="fragment">
+<p>Functions are tools for <strong>managing complexity</strong></p>
+</div>
+<div class="fragment">
+<p>AKA as <strong>abstraction</strong> or <strong>abstracting away</strong></p>
+</div>
+<div class="fragment">
+<p>So, <strong>what complexity</strong> do we want to manage?</p>
+</div>
+<div class="fragment">
+<p>What do we want to <strong>abstract away</strong>?</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="|1|2|3|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb19-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb19-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb19-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb19-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb19-6"><a href=""></a>result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>Start with the <strong>bones</strong></p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(Temp, Ozone){</span>
+<span id="cb20-2"><a href=""></a>  <span class="do">## Paste text into body </span></span>
+<span id="cb20-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="writing-functions-is-writing" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<div class="fragment">
+<p>What am I <strong>interested</strong> in?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="|1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(Temp, Ozone){</span>
+<span id="cb21-2"><a href=""></a>  is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb21-3"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb21-4"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb21-5"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb21-6"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb21-7"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb21-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="writing-functions-is-writing-1" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<p>What do I <strong>name</strong> things?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="|1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, Ozone){</span>
+<span id="cb22-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
+<span id="cb22-3"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb22-4"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb22-5"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb22-6"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb22-7"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb22-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="writing-functions-is-writing-2" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<p>Naming things can be <strong>tricky</strong>; that’s OK</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="|1|2|3|4|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
+<span id="cb23-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
+<span id="cb23-3"><a href=""></a>  <span class="co"># when_missing_index &lt;- which(is.na(airquality$Ozone))</span></span>
+<span id="cb23-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb23-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb23-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb23-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb23-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb23-9"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="writing-functions-is-writing-3" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<p>We <strong>return</strong> the last thing</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|8|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
+<span id="cb24-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
+<span id="cb24-3"><a href=""></a>  <span class="co"># when_missing_index &lt;- which(is.na(airquality$Ozone))</span></span>
+<span id="cb24-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb24-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb24-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb24-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb24-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb24-9"><a href=""></a>  result_ozone_temp</span>
+<span id="cb24-10"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="writing-functions-is-writing-4" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<p>Cleaning up <strong>old lettuce</strong> (removing unused comments)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="2,3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
+<span id="cb25-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
+<span id="cb25-3"><a href=""></a>  <span class="co"># when_missing_index &lt;- which(is.na(airquality$Ozone))</span></span>
+<span id="cb25-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb25-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb25-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb25-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb25-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb25-9"><a href=""></a>  result_ozone_temp</span>
+<span id="cb25-10"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="writing-functions-is-writing-5" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<p>Cleaning up <strong>old lettuce</strong> (removing unused comments)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
+<span id="cb26-2"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb26-3"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb26-4"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb26-5"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb26-6"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb26-7"><a href=""></a>  result_ozone_temp</span>
+<span id="cb26-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="writing-functions-is-writing-6" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<p><strong>Name</strong> the function something that <strong>evokes</strong> the <strong>action</strong></p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="1|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
+<span id="cb27-2"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb27-3"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb27-4"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb27-5"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb27-6"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb27-7"><a href=""></a>  result_ozone_temp</span>
+<span id="cb27-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>You need to <strong>use</strong> the function</p>
+</div>
+</section>
+<section id="writing-functions-is-writing-7" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<p>You need to <strong>use</strong> the function</p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb28-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Ozone,</span>
+<span id="cb28-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb28-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  is_different_miss and is_different_complete
+t = 0.026831, df = 60.447, p-value = 0.9787
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.546847  3.643306
+sample estimates:
+mean of x mean of y 
+ 77.91892  77.87069 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="writing-functions-is-writing-8" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<p>And <strong>write</strong> the output to a <strong>variable</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>temp_difference_ozone_missing <span class="ot">&lt;-</span> <span class="fu">missingness_impact</span>(</span>
+<span id="cb30-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Ozone,</span>
+<span id="cb30-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb30-4"><a href=""></a>)</span>
+<span id="cb30-5"><a href=""></a></span>
+<span id="cb30-6"><a href=""></a>temp_difference_ozone_missing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  is_different_miss and is_different_complete
+t = 0.026831, df = 60.447, p-value = 0.9787
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.546847  3.643306
+sample estimates:
+mean of x mean of y 
+ 77.91892  77.87069 </code></pre>
+</div>
+</div>
+</section>
+<section id="writing-functions-is-writing-9" class="slide level2">
+<h2>Writing functions is <strong>writing</strong></h2>
+<p>A <strong>process</strong> for writing a function</p>
+<ul>
+<li class="fragment"><strong>Copy</strong> text into body</li>
+<li class="fragment"><strong>Identify</strong> complexity to manage</li>
+<li class="fragment"><strong>Abstract</strong> the complexity</li>
+<li class="fragment">Writing functions is <strong>iterative</strong>, Just like <strong>regular writing</strong></li>
+</ul>
+</section>
+<section id="circling-back-to-dry" class="slide level2">
+<h2>Circling back to <strong>DRY</strong></h2>
+<ul>
+<li class="fragment">The problem is <strong>complex code</strong></li>
+<li class="fragment">DRY treats the symptom - <strong>repetition</strong></li>
+<li class="fragment">But the <strong>cause</strong> is expression and reasoning</li>
+<li class="fragment">A function isn’t <strong>only</strong> needed when you repeat code</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="co"># Tell me why this is a bad idea!</span></span>
+<span id="cb32-2"><a href=""></a>blindly_functionalising <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb32-3"><a href=""></a>  is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb32-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb32-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb32-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb32-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb32-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss,</span>
+<span id="cb32-9"><a href=""></a>                              is_different_complete)</span>
+<span id="cb32-10"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside class="notes">
+<p>And this is bad - WHY is this bad?</p>
+<ul>
+<li>Focussing on solving repetition</li>
+<li>You (probably) don’t want to just take a data analysis and turn it into a single function.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section></section>
+<section>
+<section id="functions-are-about-expression" class="title-slide slide level1 center">
+<h1>Functions are about <strong>expression</strong></h1>
+<ul>
+<li class="fragment"><strong>Explain and express ideas</strong></li>
+<li class="fragment"><strong>Manage complexity</strong></li>
+</ul>
+<div class="fragment">
+<p>DRY has benefits - but I think <strong>expression</strong> and <strong>complexity</strong> are more powerful</p>
+<ul>
+<li class="fragment">Avoiding copy/paste avoids <strong>easy errors</strong>!</li>
+<li class="fragment">Make changes in one place - <strong>awesome</strong>!</li>
+</ul>
+</div>
+</section>
+<section id="code-is-for-people" class="slide level2">
+<h2>Code is for people</h2>
+<blockquote>
+<p>[W]e want to establish the idea that a computer language is not just a way of getting a computer to perform operations but rather that it is a novel formal medium for expressing ideas about methodology. Thus, <strong>programs must be written for people to read, and only incidentally for machines to execute</strong>.</p>
+</blockquote>
+<p>— <a href="https://mitpress.mit.edu/9780262510875/"><strong>Structure and Interpretation of Computer Programs</strong></a>. Abelson, Sussman, and Sussman, 1984.</p>
+</section></section>
+<section>
+<section id="you-are-always-collaboratingwith-your-future-self" class="title-slide slide level1 center">
+<h1>You are always collaborating…<strong>with your future self</strong></h1>
+
+</section>
+<section id="naming-things-is-hard" class="slide level2">
+<h2>Naming things is <strong>hard</strong></h2>
+<blockquote>
+<p>There are only two hard things in Computer Science: cache invalidation and <strong>naming things</strong>.</p>
+</blockquote>
+<p>– Phil Karlton</p>
+<div class="fragment">
+<p>What does this function <strong>do</strong>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>myfun <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb33-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb33-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="naming-things-is-hard-1" class="slide level2">
+<h2>Naming things is <strong>hard</strong></h2>
+<p>Converting temperature?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>temperature_conversion <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb34-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb34-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>Clearly state <code>input_to_output()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb35-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb35-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>Name argument and intermediate variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(celcius){</span>
+<span id="cb36-2"><a href=""></a>  farenheit <span class="ot">&lt;-</span> (celcius <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb36-3"><a href=""></a>  farenheit</span>
+<span id="cb36-4"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="iteration-skateboard---car" class="slide level2">
+<h2>Iteration: <strong>Skateboard</strong> -&gt; Car</h2>
+
+<img data-src="images/spotify-howtobuildmvp.jpg" class="quarto-figure quarto-figure-center r-stretch" data-fig-height="500"><p>(heard via <a href="https://stat545.com/functions-part1.html"><strong>Stat545 functions chapter</strong></a>)</p>
+</section>
+<section id="what-makes-functions-hard" class="slide level2">
+<h2>What makes functions <strong>hard</strong>?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(celcius){</span>
+<span id="cb37-2"><a href=""></a>  (celcius <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb37-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>The idea of inputs and outputs isn’t hard</p>
+</div>
+<div class="fragment">
+<p>What <strong>is</strong> hard it taking code, (like the code in a data analysis) and <strong>finding the parts that need to change</strong></p>
+</div>
+<div class="fragment">
+<blockquote>
+<p>There’s a level of “I got it to work” and there’s a level of “It works, and I can reason about it”</p>
+</blockquote>
+<p>– Joe Cheng <a href="https://youtu.be/J8qbRYa4430?si=GnCpXk_Go7_PzOJa&amp;t=2380"><strong>You have to be able to reason about it | Data Science Hangout</strong></a></p>
+</div>
+</section>
+<section id="i-can-reason-about-it" class="slide level2">
+<h2>I can <strong>reason</strong> about it</h2>
+<blockquote>
+<p>…how do you take all this complexity and break it down into smaller pieces</p>
+</blockquote>
+<div class="fragment">
+<blockquote>
+<p>each of which you can <strong>reason about</strong></p>
+</blockquote>
+</div>
+<div class="fragment">
+<blockquote>
+<p>each of which you can <strong>hold in your head</strong></p>
+</blockquote>
+</div>
+<div class="fragment">
+<blockquote>
+<p>each of which you can look at and be like “yup, I can fully ingest this entire function definition, I can read it line by line and prove to myself this is definitely correct…</p>
+</blockquote>
+<!-- , **IF** the functions its calling don't have bugs, **AND** if it's called in the **right way**...then the result will be correct. -->
+</div>
+</section>
+<section id="i-can-reason-about-it-1" class="slide level2">
+<h2>I can <strong>reason</strong> about it</h2>
+<blockquote>
+<p>So software engineering… is a lot about this: How do you <strong>break up inherently complicated things</strong> that we are trying to do into small <strong>pieces that are individually easy to reason about</strong>. That’s half the battle…</p>
+</blockquote>
+<div class="fragment">
+<blockquote>
+<p>The other half of the battle is how do we combine them in ways that can be reliable and also easy to reason about</p>
+</blockquote>
+</div>
+</section>
+<section id="how-many-things-can-you-hold-in-your-head" class="slide level2">
+<h2>How many things can you hold in your head?</h2>
+<blockquote>
+<p>how do you take all this complexity and break it down into smaller pieces, each of which you can <strong>reason about</strong>, each of which you can <strong>hold in your head</strong></p>
+</blockquote>
+<div class="fragment">
+<p>Our working memory = 7 +/- 2 (5-9) <strong>chunks</strong></p>
+</div>
+<div class="fragment">
+<p><a href="https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two">“<strong>The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information</strong>”</a> George A. Miller, <em>Psychological Review</em>, 1956, 63 (2)</p>
+</div>
+</section>
+<section id="how-many-things-can-you-hold-in-your-head-1" class="slide level2">
+<h2>How many things can you hold in your head?</h2>
+<p>Memory is not limited by bits, but by <strong>chunks</strong></p>
+<div class="fragment">
+<p>1-8-0-0-1-3-1-0-8-6</p>
+</div>
+<div class="fragment">
+<p><strong>1800</strong> 131 <strong>086</strong></p>
+</div>
+<div class="fragment">
+<p>So practice breaking code into <strong>chunks</strong></p>
+<aside class="notes">
+<p>celcius to farenheit: boom. done.</p>
+<p>The idea of inputs and outputs isn’t hard.</p>
+<p>To motivate the process of re-reading your work</p>
+<p>Chunking and moving from numbers</p>
+<p>Miles’ SSA talk: Let’s borrow some key ideas from how we structure books: table of contents as a key to help.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="breaking-code-into-chunks" class="slide level2">
+<h2>Breaking code into <strong>chunks</strong></h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment"><p>50 <strong>lines</strong> of code</p></li>
+<li class="fragment"><p>Is not 50 <strong>ideas</strong></p></li>
+<li class="fragment"><p><strong>Chunk</strong> code into ideas</p></li>
+<li class="fragment"><p><strong>Reason with</strong> them</p></li>
+<li class="fragment"><p>Find the <strong>complexity</strong></p></li>
+<li class="fragment"><p><strong>Abstract</strong> complexity</p></li>
+</ul>
+</div><div class="column" style="width:&quot;45%;">
+<p><img data-src="images/code-chunking.png" height="600"></p>
+</div></div>
+</section></section>
+<section>
+<section id="demo-process-of-cleaning-up-a-data-analysis" class="title-slide slide level1 center">
+<h1>Demo: Process of cleaning up a data analysis</h1>
+
+<img data-src="images/repo-ozed.png" class="r-stretch"></section>
+<section id="section-1" class="slide level2" data-background-image="images/abs-education-data-markup.png" data-background-size="contain">
+<h2></h2>
+</section></section>
+<section id="debugging-should-be-taught-with-functions" class="title-slide slide level1 center">
+<h1>Debugging should be taught with functions</h1>
+<ul>
+<li class="fragment">Otherwise we build a box <strong>we can’t look inside</strong> and fix</li>
+<li class="fragment">Or give power tools <strong>without safety equipment</strong></li>
+<li class="fragment">Or writing with software that writes <strong>un-editable PDFs</strong></li>
+<li class="fragment">We need to teach what happens when things go wrong</li>
+</ul>
+</section>
+
+<section id="you-should-be-learning-debugging-when-learning-functions" class="title-slide slide level1 center">
+<h1>You should be learning debugging when learning functions</h1>
+<ul>
+<li class="fragment">An error when writing can feel like punishment</li>
+<li class="fragment">But hanging out with errors is a normal state</li>
+<li class="fragment">It’s like an expression problem in your writing</li>
+</ul>
+</section>
+
+<section>
+<section id="using-browser" class="title-slide slide level1 center">
+<h1>Using <code>browser()</code></h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="co"># example function code here - something useful though</span></span>
+<span id="cb38-2"><a href=""></a>tidy_education <span class="ot">&lt;-</span> <span class="cf">function</span>(data, names){</span>
+<span id="cb38-3"><a href=""></a>  names <span class="ot">&lt;-</span> <span class="fu">trimws</span>(names)</span>
+<span id="cb38-4"><a href=""></a>  <span class="fu">browser</span>() <span class="co"># jump into this point in the function</span></span>
+<span id="cb38-5"><a href=""></a>  <span class="co"># "n" Next line</span></span>
+<span id="cb38-6"><a href=""></a>  tidied <span class="ot">&lt;-</span> </span>
+<span id="cb38-7"><a href=""></a>  <span class="co"># "s" Step into highlighted function</span></span>
+<span id="cb38-8"><a href=""></a>  combined <span class="ot">&lt;-</span> <span class="fu">combine_custom_data</span>(tidied, data)</span>
+<span id="cb38-9"><a href=""></a>  <span class="co"># "f" Finish execution of loop or function</span></span>
+<span id="cb38-10"><a href=""></a>  <span class="co"># "Q" Quit browser</span></span>
+<span id="cb38-11"><a href=""></a>  <span class="co"># "help" - loads a list of helper code</span></span>
+<span id="cb38-12"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-2" class="slide level2" data-background-image="images/roger-user-developer-spectrum.png" data-background-size="contain">
+<h2></h2>
+</section>
+<section id="section-3" class="slide level2" data-background-image="images/hadley-practice-programmer.png" data-background-size="contain">
+<h2></h2>
+</section>
+<section id="practitioner-programmer" class="slide level2">
+<h2>Practitioner &lt;&gt; Programmer</h2>
+<blockquote>
+<p>The ambiguity [of the S language] is real and goes to a key objective: we wanted users to be able to begin in an <strong>interactive environment</strong>, where they did not consciously think of themselves as programming. Then as their needs became clearer and their sophistication increased, they should be able to <strong>slide gradually into programming</strong>, when the language and system aspects would become more important</p>
+</blockquote>
+<p><a href="https://blog.revolutionanalytics.com/2014/01/john-chambers-recounts-the-history-of-s-and-r.html">** – John Chambers, “Stages in the evolution of S”**</a></p>
+<p><a href=""><strong>(Heard via ‘tapply to Tidyverse’, by Roger Peng)</strong></a>)</p>
+<aside class="notes">
+<p>I want to emphasise two things here: 1. The creators of S, the ancestor to the R language, <strong>wanted you to program</strong>. But they also want you to practice code, and work interactively. , and 2. What I’m telling you now isn’t like a brand new idea or anything. It’s been here all along.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="summary-cleaning-up-a-data-analysis" class="title-slide slide level1 center">
+<h1>Summary: Cleaning up a data analysis</h1>
+<ul>
+<li class="fragment">Functions helped us uncover the thing we care about - <strong>year</strong></li>
+<li class="fragment">Debugging should be taught alongside functions</li>
+</ul>
+</section>
+<aside class="notes">
+<p>The idea of chunking up code to break down complexity. communicate the idea that this is an iterative process - as Hadley said in his “design of everyday functions” talk, you need to write, then rewrite, then re-re-re-re-write functions, in the same way that it takes time to write text to communicate to others. (might be a good time to 2. Model how you do this part of your work. How do you move from writing code to writing functions. Writing functions doesn’t have to be this “sometimes” activity - it should be part of a healthy data analysis. I will go through some common parts of a data analysis, and demonstrate a process for writing out steps as functions, and also special tools for creating, and understanding functions (fnmate, browser (also debugonce and recover). I want to cover this idea that you can use functions to manage your own complexity. 1. If you are doing a data analysis - moving from multiple scripts 3. Model how you do this part of your work. How do you move from writing code to writing functions. Writing functions doesn’t have to be this “sometimes” activity - it should be part of a healthy data analysis. To do this I want to model this behaviour by walking through a data analysis, and demonstrating writing functions, and also special tools for creating, and understanding functions (fnmate, browser (also debugonce and recover)) - Other ideas to demonstrate in this demo - Maybe I want to simulate restarting R and coming back to it - Ah man, I don’t want to re-run this data analysis now.</p>
+<section id="lets-use-this-overview-of-functions-to-do-the-thing" class="title-slide slide level1 center">
+<h1>Let’s use this overview of functions to do the thing</h1>
+<ul>
+<li>introduce Debugging: the tools of the trade</li>
+<li>story of learning debugging</li>
+<li>The poor mans (other version?) debugger</li>
+<li>introduce browser</li>
+</ul>
+<p>Tell a story about how I was taught debugging when I first started programming and I just did not understand the reason why I would care. The reason it turns out - is that I didn’t yet know about the idea of interactive vs non-interactive, or rather - the practitioner-programmer spectrum. And I guess that this is summarised by a nice slide from Hadley (<a href="https://www.youtube.com/watch?v=Qne86lxjgtg" class="uri">https://www.youtube.com/watch?v=Qne86lxjgtg</a>) - “you hear your code scream” vs “things break and people scream at you”.</p>
+<p>Hadley talks about this idea of “code is a conversation” - when things break, or don’t work, if you’re working in this script-land, then you know when this breaks, and you might be able to jump back into things.</p>
+<p>But if you’re in programmer land, there’s a wall between you and your code…sometimes.</p>
+<p>Summarise by talking about how we slide from the user &lt;–&gt; developer seamlessly. This is actually what R is designed to do!:</p>
+
+<img data-src="images/clipboard-2863518647.png" class="r-stretch"></section>
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside></section>
+<section id="convey_key_ideas" class="title-slide slide level1 center">
+<h1><code>convey_key_ideas()</code></h1>
+<ul>
+<li class="fragment"><strong>Good</strong> functions</li>
+<li class="fragment"><strong>Teaching</strong> functions</li>
+<li class="fragment">My <strong>challenge</strong> to you</li>
+</ul>
+</section>
+
+<section id="good-functions" class="title-slide slide level1 center">
+<h1><strong>Good</strong> functions</h1>
+<ol type="1">
+<li class="fragment">Manage <strong>complexity</strong></li>
+<li class="fragment">Explain and express <strong>ideas</strong></li>
+<li class="fragment">Can be <strong>individually reasoned</strong> with</li>
+<li class="fragment">Take <strong>iteration</strong></li>
+</ol>
+</section>
+
+<section id="teaching-functions-1" class="title-slide slide level1 center">
+<h1><strong>Teaching</strong> functions</h1>
+<ul>
+<li class="fragment">Emphasise using functions to <strong>express ideas</strong>
+<ul>
+<li class="fragment">Avoiding repetion is a symptom of needing a function</li>
+</ul></li>
+<li class="fragment">Demonstrate <strong>process</strong>
+<ul>
+<li class="fragment">Demos &amp; writing</li>
+</ul></li>
+<li class="fragment">Try and use practical functions, not only <strong>toy</strong> ones</li>
+<li class="fragment">Teach <strong>debugging</strong> alongside functions</li>
+</ul>
+</section>
+
+<section id="my-challenge-to-you" class="title-slide slide level1 center">
+<h1>My <strong>challenge</strong> to you</h1>
+<ul>
+<li class="fragment">Start <strong>sprinkling</strong> functions into daily use</li>
+<li class="fragment">use <code>browser()</code> or other debugging tools</li>
+<li class="fragment">Read other people’s code - peer review!</li>
+<li class="fragment">Question me - does this make sense?</li>
+</ul>
+<aside class="notes">
+<p>How do you get better at writing functions in your own life?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+
+<section id="thanks" class="title-slide slide level1 center">
+<h1><strong>Thanks</strong></h1>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li class="fragment">Miles McBain</li>
+<li class="fragment">Nick Golding</li>
+<li class="fragment">Saras Windecker</li>
+<li class="fragment">August Hao</li>
+<li class="fragment">Chitra Saraswati</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<ul>
+<li class="fragment">Hadley Wickham</li>
+<li class="fragment">Jenny Bryan</li>
+<li class="fragment">Joe Cheng</li>
+<li class="fragment">Roger Peng</li>
+</ul>
+</div></div>
+</section>
+
+<section id="references" class="title-slide slide level1 center">
+<h1>References</h1>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment"><a href="https://www.youtube.com/watch?v=J8qbRYa4430"><strong>You have to be able to reason about it</strong></a></li>
+<li class="fragment"><a href="https://www.youtube.com/watch?v=rz3_FDVt9eg"><strong>Many Models</strong></a></li>
+<li class="fragment"><a href="https://www.youtube.com/watch?v=Qne86lxjgtg"><strong>The design of everyday functions</strong></a></li>
+<li class="fragment"><a href="https://www.youtube.com/watch?v=ywK4qs5dJsg"><strong>Our colour of magic</strong></a></li>
+<li class="fragment"><a href="https://www.youtube.com/watch?v=7oyiPBjLAWY"><strong>Code Smells and Feels</strong></a></li>
+<li class="fragment"><a href="https://www.youtube.com/watch?v=5033jBHFiHE&amp;t=1s"><strong>From tapply to Tidyverse</strong></a></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<ul>
+<li class="fragment"><a href="https://r4ds.had.co.nz/functions.html"><strong>Advanced R: Functions</strong></a></li>
+<li class="fragment"><a href="https://design.tidyverse.org/"><strong>Tidy Design Principles</strong></a></li>
+<li class="fragment"><a href="https://www.stat.auckland.ac.nz/~ihaka/downloads/lexical.pdf"><strong>Lexical Scope and Statistical Computing</strong></a></li>
+<li class="fragment"><a href="https://stat545.com/functions-part1.html"><strong>stat545 chapter on functions</strong></a></li>
+</ul>
+</div></div>
+</section>
+
+<section id="colophon" class="title-slide slide level1 center">
+<h1>Colophon</h1>
+<ul>
+<li class="fragment">Slides made using <a href="https://github.com/quarto-dev/quarto"><strong>quarto</strong></a></li>
+<li class="fragment">Colours taken + modified from <a href="https://github.com/ropenscilabs/ochRe"><strong>lorikeet theme from ochRe</strong></a> <a href="github.com/njtierney/njt-talks"><strong>njtierney/njt-talks</strong></a> <!-- - Header font is **Josefin Sans** --> <!-- - Body text font is **Montserrat** --> <!-- - Code font is **Fira Mono** --> <!-- - template available:  --></li>
+</ul>
+</section>
+
+<section id="learning-more" class="title-slide slide level1 center">
+<h1>Learning more</h1>
+<p><svg viewbox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#f0a800;" xmlns="http://www.w3.org/2000/svg"> <path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"></path> </svg> <a href=""><strong>talk link</strong></a></p>
+<p><svg viewbox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#f0a800;" xmlns="http://www.w3.org/2000/svg"> <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path> </svg> njtierney</p>
+<p><svg viewbox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#f0a800;" xmlns="http://www.w3.org/2000/svg"> <path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"></path> </svg> nicholas.tierney@gmail.com</p>
+</section>
+
+<section id="bonus-round" class="title-slide slide level1 center">
+<h1>Bonus round</h1>
+
+</section>
+
+<section id="debug-and-friends" class="title-slide slide level1 center">
+<h1><code>debug()</code> and friends</h1>
+<ul>
+<li class="fragment"><code>debug(function_name)</code>
+<ul>
+<li class="fragment">As if “browser” is put at top of function</li>
+<li class="fragment">Saves you needing to inject <code>browser()</code> into code</li>
+<li class="fragment">Will run on <code>function_name()</code> until end of session</li>
+<li class="fragment">to turn off: <code>undebug(function_name)</code></li>
+</ul></li>
+<li class="fragment"><code>debugonce(function_name)</code>
+<ul>
+<li class="fragment">Does <code>debug(function_name)</code> <strong>once</strong></li>
+</ul></li>
+</ul>
+</section>
+
+<section id="good-function-bad-function" class="title-slide slide level1 center">
+<h1>Good function bad function</h1>
+
+</section>
+
+<section>
+<section id="other-debugging-tools" class="title-slide slide level1 center">
+<h1>Other debugging tools</h1>
+<ul>
+<li class="fragment"><code>options(error = recover)</code>: watch Miles McBain’s <a href=""><strong>“stop. breath. recover” video</strong></a></li>
+<li class="fragment"><code>options(error = browser)</code>: Will drop a <code>browser()</code> in your code when you hit an error. Kind of scary.</li>
+<li class="fragment"><code>options(error = NULL)</code>: turn off these special modes</li>
+</ul>
+</section>
+<section id="fnmate-milesmcbainfnmate" class="slide level2">
+<h2><code>fnmate</code>: milesmcbain/fnmate</h2>
+
+<img data-src="images/fnmate.gif" class="r-stretch"></section>
+<section id="targets-ropenscitargets" class="slide level2">
+<h2><code>targets</code>: ropensci/targets</h2>
+
+<img data-src="images/targets.png" class="r-stretch"></section>
+<section id="other-fun-reading" class="slide level2">
+<h2>Other fun reading</h2>
+<ul>
+<li class="fragment"><a href="https://web.archive.org/web/20201216043719/http://coding.derkeiler.com/Archive/Lisp/comp.lang.lisp/2006-04/msg01644.html"><strong>How knowing Lisp destroyed my programming career</strong></a></li>
+<li class="fragment"><a href="https://en.wikipedia.org/wiki/Inner-platform_effect"><strong>Inner platform effect</strong></a></li>
+<li class="fragment"><a href="https://en.wikipedia.org/wiki/Greenspun%27s_tenth_rule"><strong>Greenspuns 10th rule</strong></a></li>
+<li class="fragment"><a href="https://wiki.c2.com/?TelescopeRule"><strong>The telescope rule</strong></a></li>
+</ul>
+</section></section>
+<section id="end." class="title-slide slide level1 center">
+<h1><strong>End.</strong></h1>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>njtierney.github.io/talk-funfun-saltlake/</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
