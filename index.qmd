@@ -2,7 +2,7 @@
 title: "Practical Functions: <br>**Practically Magic**"
 subtitle: "Salt Lake City R User Group<br>2025-08-08(09)"
 author: "Nicholas Tierney"
-institute: Statistical Consultatnt
+institute: Statistical Consultant
 format: 
   revealjs:
     theme: [blood, extra.scss]
@@ -149,8 +149,6 @@ airquality %>%
   )
 ```
 
-## The impact of missingness?
-
 ```{r}
 #| echo: false
 var_missing <- airquality$Solar.R
@@ -162,31 +160,57 @@ var_interest_miss <- var_interest[which_missing]
 var_interest_complete <- var_interest[which_complete]
 
 na_aq <- nabular(airquality) 
-ggplot(na_aq,
+fill_colour_values <- c("!NA" = "#008080", "NA" = "coral")
+gg_setup_impact <- ggplot(na_aq,
        aes(x = Solar.R_NA,
            y = Temp,
            fill = Solar.R_NA,
            colour = Solar.R_NA)) + 
-  geom_rain(
-    boxplot.args = list(color = "black"),
-    violin.args = list(color = "black"),
-    point.args = list(alpha = 0.5)
-  ) +
   labs(
     x = ""
   ) + 
   scale_x_discrete(
     limits = c("NA", "!NA"),
     labels = c("Solar.R Missing", "Solar.R Present")
-    ) + 
+    ) +
   coord_flip() +
-  scale_fill_manual(values = c("#008080", "coral")) + 
-  scale_colour_manual(values = c("#008080", "coral")) + 
+  scale_fill_manual(values = fill_colour_values) + 
+  scale_colour_manual(values = fill_colour_values) + 
   ggthemes::theme_par() +
   theme(
     legend.position = "none"
   )
-  
+set.seed(2025-10-07)
+gg_impact_jitter <- gg_setup_impact + geom_jitter(width = 0.15, alpha = 0.8)
+```
+
+
+## The impact of missingness?
+
+```{r}
+#| echo: false
+set.seed(2025-10-07)
+gg_impact_jitter
+```
+
+## The impact of missingness?
+
+```{r}
+#| echo: false
+set.seed(2025-10-07)
+gg_impact_jitter + geom_boxplot(median.colour = "white", alpha = 0.8) 
+```
+
+## The impact of missingness?
+
+```{r}
+#| echo: false
+gg_setup_impact +
+  geom_rain(
+    boxplot.args = list(color = "black"),
+    violin.args = list(color = "black"),
+    point.args = list(alpha = 0.5)
+  )
 ```
 
 ## A script:
@@ -246,7 +270,8 @@ result_ozone_wind
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "|1|2"
+#| code-line-numbers: "|2|3"
+# Variables Ozone and Wind
 var_missing <- airquality$Ozone
 var_interest <- airquality$Wind
 which_missing <- which(is.na(var_missing))
@@ -255,7 +280,7 @@ var_interest_miss <- var_interest[which_missing]
 var_interest_complete <- var_interest[which_complete]
 result_ozone_wind <- t.test(var_interest_miss, y = var_interest_complete)
 
-# I just like DO IT ALL AGAIN??
+# Variables: Solar.R and Temp.. I just like DO IT ALL AGAIN??
 var_missing <- airquality$Solar.R
 var_interest <- airquality$Temp
 which_missing <- which(is.na(var_missing))
@@ -269,7 +294,23 @@ result_solar_temp <- t.test(var_interest_miss, y = var_interest_complete)
 playing "spot the difference" felt wrong!
 :::
 
-## ...eventually...a function!
+# A brief aside
+
+## I didn't know how to describe this problem
+
+I asked (something like):
+
+> Is there a way for me to change the variable at the top of a script so I can change what variables I use to run a whole script?
+
+. . . 
+
+I wish I had started with describing __a need__:
+
+> I need to repeat the same task many times to compare different variables, is there a better way?
+
+## So eventually I wrote a function for my missing data problem
+
+. . . 
 
 ```{r}
 #| echo: true
@@ -286,6 +327,12 @@ missingness_impact <- function(when_missing, is_different){
   
 }
 ```
+
+# But **how** to think about writing a function?
+
+# {background-image="images/draw-the-tick.jpeg" background-size="contain"}
+
+# {background-image="images/owl-draw.png" background-size="contain"}
 
 ## Functions = expression
 
@@ -309,36 +356,12 @@ missingness_impact(
 )
 ```
 
-## Teaching functions?
+## Writing code is **writing**
 
-```{r}
-celcius_to_farenheit <- function(x){
-  (x * 9/5) + 32
-}
-
-celcius_to_farenheit(0)
-celcius_to_farenheit(25)
-```
-
-. . .
-
-**Trivialises** functions
-
-. . .
-
-Functions should be **relevant** to you
-
-. . .
-
-Functions are **expression** they are **ideas**
-
-. . .
-
-Functions **manage complexity**
-
-::: notes
-It doesn't showcase the power It makes it seem trivial
-:::
+- Writing takes iteration
+- Good writing is about good **expression**
+- Good code is **well expressed**
+- So how do we **teach people how to write functions**?
 
 ## DRY: Don't **Repeat** Yourself
 
@@ -369,7 +392,7 @@ result_solar_wind <- t.test(is_different_miss, is_different_complete)
 You've only written this out twice But you'll revisit it more than once You've got to manually parse what is different The structure is the same It's like a game of spot the difference idea: show images where two Where is the difference? - THERE IS NO DIFFERENCE - YOU HAVE WASTED YOUR TIME
 :::
 
-## DRY: Don't **re-read** Yourself\*
+## D**RR**Y: Don't **reread** Yourself\*
 
 > If you **re-read** your code 3 times, write a function
 
@@ -396,11 +419,11 @@ result_solar_wind <- t.test(is_different_miss, is_different_complete)
 \*naming credit: Miles McBain
 :::
 
-## How to **write** a function
+## How to **design/write** a function
 
 . . .
 
-Functions are tools for **managing complexity**
+Functions are tools for **expressing complexity**
 
 . . .
 
@@ -408,13 +431,192 @@ AKA as **abstraction** or **abstracting away**
 
 . . .
 
-So, **what complexity** do we want to manage?
+So, what **complexity** do we want to **express**?
 
 . . .
 
 What do we want to **abstract away**?
 
+. . . 
+
+Two approaches: 
+
+1. **outside**-in
+2. **inside**-out
+
+## Going outside-in
+
+Start with psuedo (fake) code where you __imagine you already wrote it__, asking yourself:
+
+- What am I trying to do? 
+- What pieces of information do I need to provide?
+- What will the output be?
+
+. . . 
+
+And start designing the function.
+
+. . . 
+
+Once you are happy with how it looks and how you think it will work, it will (generally) be easier to write the rest.
+
+## Refresh: What are we trying to do
+
+```{r}
+#| echo: false
+gg_setup_impact +
+  geom_rain(
+    boxplot.args = list(color = "black"),
+    violin.args = list(color = "black"),
+    point.args = list(alpha = 0.5)
+  )
+```
+
+
+## Refresh: What are we trying to do
+
+```{r}
+is_different <- airquality$Wind
+when_missing_index <- which(is.na(airquality$Solar.R))
+when_complete_index <- which(!is.na(airquality$Solar.R))
+is_different_miss <- is_different[when_missing_index]
+is_different_complete <- is_different[when_complete_index]
+result_solar_wind <- t.test(is_different_miss, is_different_complete)
+```
+
+
+## Going outside-in
+
+```{r}
+#| eval: false
+output <- what_am_i_trying_to_do(information_piece, another_piece)
+```
+
+. . . 
+
+What am I trying to do?
+
+- Is variable A statistically different when variable B is missing?
+
+. . . 
+
+What pieces of information do I need to provide?
+
+  - A variable whose **missingness** we are interested in
+  - A variables whose **values** are impacted by missingness
+
 . . .
+
+What will the output be?
+
+- A t-test result
+
+## Going outside-in: **iteration**
+
+```{r}
+#| eval: false
+impact_of_missingness( # does this evoke the action?
+  variable_is_missing = airquality$Solar.R,
+  variable_impacted = airquality$Temp
+  )
+```
+
+. . . 
+
+```{r}
+#| eval: false
+missing_difference(
+  variable_going_missing = airquality$Solar.R,
+  variable_different = airquality$Temp
+)
+```
+
+. . . 
+
+
+```{r}
+#| eval: false
+missingness_impact(
+  variable_going_missing = airquality$Solar.R,
+  variable_different = airquality$Temp
+)
+```
+
+. . . 
+
+```{r}
+#| eval: false
+missingness_impact(
+  variable_missing = airquality$Solar.R,
+  is_different = airquality$Temp
+)
+```
+
+. . .
+
+```{r}
+#| eval: false
+missingness_impact(
+  when_missing = airquality$Solar.R,
+  is_different = airquality$Temp
+)
+```
+
+
+## Going outside-in
+
+**outside-in** focusses on how the user interacts with your function. This is but one hard part of things.
+
+. . . 
+
+You still need to **zoom in** to the code details.
+
+. . . 
+
+The **outside** impacts the inside
+
+. . . 
+
+The **inside** impacts the outside
+
+## Science + Engineering
+
+- Balancing: exploring, understanding problem space
+- Moving between these states
+
+. . . 
+
+> "In science, if you know what you are doing, you should not be doing it. In engineering, if you do not know what you are doing, you should not be doing it. Of course, you seldom, if ever, see either pure state."
+
+-- Richard Hamming, [The Art of Doing Science and Engineering](https://www.amazon.com/dp/1732265178) 
+
+
+## Going up and down the ladder of abstraction
+
+. . . 
+
+> How do we explore? If you move to a new city, you might learn the territory by walking around. Or you might peruse a map. But far more effective than either is both together — a street-level experience with higher-level guidance. Likewise, the most powerful way to gain insight into a system is by moving between levels of abstraction. 
+
+-- Brett Victor, ["Up and Down the ladder of abstraction"](https://worrydream.com/LadderOfAbstraction/)
+
+## Writing functions Outside in then Inside-out
+
+- We know what we want the function **signature** to be:
+
+. . . 
+
+```{r}
+#| eval: false
+missingness_impact(
+  when_missing = airquality$Solar.R,
+  is_different = airquality$Temp
+)
+```
+
+- Now let's go inside
+
+
+## Going inside-out
 
 ```{r}
 #| code-line-numbers: "|1|2|3|6"
@@ -426,6 +628,7 @@ is_different_complete <- is_different[when_complete_index]
 result_ozone_temp <- t.test(is_different_miss, is_different_complete)
 ```
 
+
 . . .
 
 Start with the **bones**
@@ -434,8 +637,8 @@ Start with the **bones**
 
 ```{r}
 #| eval: false
-misstest <- function(Temp, Ozone){
-  ## Paste text into body 
+missingness_impact <- function(when_missing, is_different){
+# paste into body here
 }
 ```
 
@@ -447,7 +650,7 @@ What am I **interested** in?
 
 ```{r}
 #| code-line-numbers: "|1|2|3|4"
-misstest <- function(Temp, Ozone){
+missingness_impact <- function(when_missing, is_different){
   is_different <- airquality$Temp
   when_missing_index <- which(is.na(airquality$Ozone))
   when_complete_index <- which(!is.na(airquality$Ozone))
@@ -463,7 +666,7 @@ What do I **name** things?
 
 ```{r}
 #| code-line-numbers: "|1|2|3|4"
-misstest <- function(is_different, Ozone){
+missingness_impact <- function(when_missing, is_different){
   # is_different <- airquality$Temp
   when_missing_index <- which(is.na(airquality$Ozone))
   when_complete_index <- which(!is.na(airquality$Ozone))
@@ -479,7 +682,7 @@ Naming things can be **tricky**; that's OK
 
 ```{r}
 #| code-line-numbers: "|1|2|3|4|8"
-misstest <- function(is_different, when_missing){
+missingness_impact <- function(when_missing, is_different){
   # is_different <- airquality$Temp
   # when_missing_index <- which(is.na(airquality$Ozone))
   when_missing_index <- which(is.na(when_missing))
@@ -496,7 +699,7 @@ We **return** the last thing
 
 ```{r}
 #| code-line-numbers: "|8|9"
-misstest <- function(is_different, when_missing){
+missingness_impact <- function(when_missing, is_different){
   # is_different <- airquality$Temp
   # when_missing_index <- which(is.na(airquality$Ozone))
   when_missing_index <- which(is.na(when_missing))
@@ -514,7 +717,7 @@ Cleaning up **old lettuce** (removing unused comments)
 
 ```{r}
 #| code-line-numbers: "2,3"
-misstest <- function(is_different, when_missing){
+missingness_impact <- function(when_missing, is_different){
   # is_different <- airquality$Temp
   # when_missing_index <- which(is.na(airquality$Ozone))
   when_missing_index <- which(is.na(when_missing))
@@ -532,7 +735,7 @@ Cleaning up **old lettuce** (removing unused comments)
 
 ```{r}
 #| code-line-numbers: "|1"
-misstest <- function(is_different, when_missing){
+missingness_impact <- function(when_missing, is_different){
   when_missing_index <- which(is.na(when_missing))
   when_complete_index <- which(!is.na(when_missing))
   is_different_miss <- is_different[when_missing_index]
@@ -544,12 +747,24 @@ misstest <- function(is_different, when_missing){
 
 ## Writing functions is **writing**
 
-**Name** the function something that **evokes** the **action**
+:::{.panel-tabset}
 
-. . .
+### before
 
 ```{r}
-#| code-line-numbers: "1|"
+var_missing <- airquality$Ozone
+var_interest <- airquality$Wind
+which_missing <- which(is.na(var_missing))
+which_complete <- which(!is.na(var_missing))
+var_interest_miss <- var_interest[which_missing]
+var_interest_complete <- var_interest[which_complete]
+result_ozone_wind <- t.test(var_interest_miss, y = var_interest_complete)
+```
+
+
+### after
+
+```{r}
 missingness_impact <- function(is_different, when_missing){
   when_missing_index <- which(is.na(when_missing))
   when_complete_index <- which(!is.na(when_missing))
@@ -560,9 +775,8 @@ missingness_impact <- function(is_different, when_missing){
 }
 ```
 
-. . .
+:::
 
-You need to **use** the function
 
 ## Writing functions is **writing**
 
@@ -593,12 +807,17 @@ temp_difference_ozone_missing
 
 ## Writing functions is **writing**
 
-A **process** for writing a function
+Outside in:
+
+- What am I trying to do?
+- What pieces of information do I need to provide?
+- What will the output be?
+
+Inside out:
 
 -   **Copy** text into body
 -   **Identify** complexity to manage
 -   **Abstract** the complexity
--   Writing functions is **iterative**, Just like **regular writing**
 
 ## Circling back to **DRY**
 
@@ -818,11 +1037,21 @@ Miles' SSA talk: Let's borrow some key ideas from how we structure books: table 
 
 ##  {background-image="images/abs-education-data-markup.png" background-size="contain"}
 
+# Moving up and down the ladder of abstraction
+
+- Go to function definition
+  - Cmd + Click/ Ctrl + F12
+  - Cmd/Ctrl + .
+- Explore and debug functions
+  - browser()
+  - debugonce()
+
 # Debugging should be taught with functions
 
 -   Otherwise we build a box **we can't look inside** and fix
 -   Or give power tools **without safety equipment**
 -   Or writing with software that writes **un-editable PDFs**
+-   A one-way elevator in a skyscraper
 -   We need to teach what happens when things go wrong
 
 # You should be learning debugging when learning functions
@@ -830,6 +1059,7 @@ Miles' SSA talk: Let's borrow some key ideas from how we structure books: table 
 -   An error when writing can feel like punishment
 -   But hanging out with errors is a normal state
 -   It's like an expression problem in your writing
+-   You must be able to move up and down the ladder of abstraction
 
 # Using `browser()`
 
@@ -886,21 +1116,30 @@ Hadley talks about this idea of "code is a conversation" - when things break, or
 
 But if you're in programmer land, there's a wall between you and your code...sometimes.
 
-Summarise by talking about how we slide from the user \<--\> developer seamlessly. This is actually what R is designed to do!:
+Summarise by talking about how we slide from the user \<--\> developer seamlessly. This is actually what R is designed to do!
 
 ![](images/clipboard-2863518647.png)
 :::
 
 # `convey_key_ideas()`
 
+-   **Writing** functions
 -   **Good** functions
 -   **Teaching** functions
 -   My **challenge** to you
 
+# **Writing** functions
+
+1. Start **outside**-in
+2. Then **inside**-out
+3. Outside <--> Inside is key to understanding
+4. We must go up and down the ladder of abstraction (street level to map level)
+5. Know how to debug
+
 # **Good** functions
 
 1.  Manage **complexity**
-2.  Explain and express **ideas**
+2.  Explain and **express** ideas
 3.  Can be **individually reasoned** with
 4.  Take **iteration**
 
@@ -910,6 +1149,7 @@ Summarise by talking about how we slide from the user \<--\> developer seamlessl
     -   Avoiding repetion is a symptom of needing a function
 -   Demonstrate **process**
     -   Demos & writing
+    -   Moving from outside-in to inside-out
 -   Try and use practical functions, not only **toy** ones
 -   Teach **debugging** alongside functions
 
@@ -960,6 +1200,7 @@ How do you get better at writing functions in your own life?
 -   [**Tidy Design Principles**](https://design.tidyverse.org/)
 -   [**Lexical Scope and Statistical Computing**](https://www.stat.auckland.ac.nz/~ihaka/downloads/lexical.pdf)
 -   [**stat545 chapter on functions**](https://stat545.com/functions-part1.html)
+-   [**Up and Down the Ladder of Abstraction**](https://worrydream.com/LadderOfAbstraction/)
 :::
 :::::
 
@@ -970,7 +1211,7 @@ How do you get better at writing functions in your own life?
 
 # Learning more
 
-`r icon_link` [**talk link**]()
+`r icon_link` [njtierney.github.io/talk-funfun-slc](https://njtierney.github.io/talk-funfun-slc/#/title-slide)
 
 `r icon_github` njtierney
 
@@ -987,8 +1228,6 @@ How do you get better at writing functions in your own life?
     -   to turn off: `undebug(function_name)`
 -   `debugonce(function_name)`
     -   Does `debug(function_name)` **once**
-
-# Good function \n bad function
 
 # Other debugging tools
 
@@ -1012,3 +1251,4 @@ How do you get better at writing functions in your own life?
 -   [**The telescope rule**](https://wiki.c2.com/?TelescopeRule)
 
 # **End.**
+

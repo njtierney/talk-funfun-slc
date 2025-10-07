@@ -202,7 +202,7 @@
 Nicholas Tierney 
 </div>
         <p class="quarto-title-affiliation">
-            Telethon Kids Institute
+            Statistical Consultant
           </p>
     </div>
 </div>
@@ -215,14 +215,10 @@ Nicholas Tierney
 <li class="fragment">Someone who has written a <strong>couple</strong> of functions</li>
 <li class="fragment">The <strong>sceptic</strong> function user</li>
 <li class="fragment">The <strong>regular</strong> function user</li>
-<li class="fragment"><strong>Various</strong> members of the <strong>R Core Team</strong></li>
 </ol>
 <aside class="notes">
 <p>I want to start by saying that I want to cover a range of different audiences in this talk. I want this talk to be helpful for someone who has never written a function, through to someone who has written a couple of functions - the person who is suspicious of functions and doesn’t really get the point - the regular function user, and also, I hope I can convey something useful to the various members of the R Core team and R developers.</p>
 <p>note: Make this a line graph or something?</p>
-<pre><code>1.  Thomas Lumley
-2.  Simon Urbanek
-3.  Paul Murrell</code></pre>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -291,8 +287,8 @@ Nicholas Tierney
 
     <script>
 
-      function styleCell_yoczsfd87stczvwn60x8(i, j, css_id) {
-          var table = document.getElementById("tinytable_yoczsfd87stczvwn60x8");
+      function styleCell_cnkys9nvwl0dpdd2qqof(i, j, css_id) {
+          var table = document.getElementById("tinytable_cnkys9nvwl0dpdd2qqof");
           var cell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -301,8 +297,8 @@ Nicholas Tierney
               console.warn(`Cell at (${i}, ${j}) not found.`);
           }
       }
-      function spanCell_yoczsfd87stczvwn60x8(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_yoczsfd87stczvwn60x8");
+      function spanCell_cnkys9nvwl0dpdd2qqof(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_cnkys9nvwl0dpdd2qqof");
         const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
         if (!targetCell) {
           console.warn(`Cell at (${i}, ${j}) not found.`);
@@ -333,16 +329,16 @@ Nicholas Tierney
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: '6', j: 0 }, { i: '6', j: 1 },  ], css_id: 'tinytable_css_btaugh5qu4ncmp3sqr51',}, 
-          { positions: [ { i: '5', j: 0 }, { i: '5', j: 1 },  ], css_id: 'tinytable_css_1doyxvj2f94cq3ndj4g2',}, 
-          { positions: [ { i: '1', j: 0 }, { i: '2', j: 0 }, { i: '4', j: 0 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '3', j: 0 }, { i: '1', j: 1 }, { i: '4', j: 1 },  ], css_id: 'tinytable_css_2tjnsr3yukhlz1gyn5yf',}, 
-          { positions: [ { i: '0', j: 0 }, { i: '0', j: 1 },  ], css_id: 'tinytable_css_aejayuav0nw0esmwe8ow',}, 
+          { positions: [ { i: '6', j: 0 }, { i: '6', j: 1 },  ], css_id: 'tinytable_css_te2u4a60yt9gmiyvs5ax',}, 
+          { positions: [ { i: '5', j: 0 }, { i: '5', j: 1 },  ], css_id: 'tinytable_css_wd3gai0wmlpgp8gp1ube',}, 
+          { positions: [ { i: '1', j: 0 }, { i: '2', j: 0 }, { i: '4', j: 0 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '3', j: 0 }, { i: '1', j: 1 }, { i: '4', j: 1 },  ], css_id: 'tinytable_css_8f2wljzt7vcji54473ig',}, 
+          { positions: [ { i: '0', j: 0 }, { i: '0', j: 1 },  ], css_id: 'tinytable_css_acooh7dze8i3lrts1nj5',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_yoczsfd87stczvwn60x8(cell.i, cell.j, group.css_id);
+                  styleCell_cnkys9nvwl0dpdd2qqof(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -350,13 +346,13 @@ Nicholas Tierney
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_btaugh5qu4ncmp3sqr51, .table th.tinytable_css_btaugh5qu4ncmp3sqr51 { font-weight: bold; color: white; background-color: #FF7F50; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_1doyxvj2f94cq3ndj4g2, .table th.tinytable_css_1doyxvj2f94cq3ndj4g2 { font-weight: bold; color: white; background-color: #FF7F50; }
-      .table td.tinytable_css_2tjnsr3yukhlz1gyn5yf, .table th.tinytable_css_2tjnsr3yukhlz1gyn5yf { font-weight: bold; color: white; background-color: #008080; }
-      .table td.tinytable_css_aejayuav0nw0esmwe8ow, .table th.tinytable_css_aejayuav0nw0esmwe8ow { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_te2u4a60yt9gmiyvs5ax, .table th.tinytable_css_te2u4a60yt9gmiyvs5ax { font-weight: bold; color: white; background-color: #FF7F50; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_wd3gai0wmlpgp8gp1ube, .table th.tinytable_css_wd3gai0wmlpgp8gp1ube { font-weight: bold; color: white; background-color: #FF7F50; }
+      .table td.tinytable_css_8f2wljzt7vcji54473ig, .table th.tinytable_css_8f2wljzt7vcji54473ig { font-weight: bold; color: white; background-color: #008080; }
+      .table td.tinytable_css_acooh7dze8i3lrts1nj5, .table th.tinytable_css_acooh7dze8i3lrts1nj5 { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_yoczsfd87stczvwn60x8" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_cnkys9nvwl0dpdd2qqof" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -400,40 +396,48 @@ Nicholas Tierney
 <section id="the-impact-of-missingness-1" class="slide level2">
 <h2>The impact of missingness?</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="the-impact-of-missingness-2" class="slide level2">
+<h2>The impact of missingness?</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="the-impact-of-missingness-3" class="slide level2">
+<h2>The impact of missingness?</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 <section id="a-script" class="slide level2">
 <h2>A script:</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(airquality<span class="sc">$</span>Temp[<span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))])</span>
-<span id="cb2-2"><a href=""></a>y <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(airquality<span class="sc">$</span>Temp[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))])</span>
-<span id="cb2-3"><a href=""></a></span>
-<span id="cb2-4"><a href=""></a>x_mean_diff <span class="ot">&lt;-</span> (x <span class="sc">-</span> (<span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb2-5"><a href=""></a>sum_x_mean_diff <span class="ot">&lt;-</span> <span class="fu">sum</span>(x_mean_diff)</span>
-<span id="cb2-6"><a href=""></a>s_x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((<span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(x)) <span class="sc">*</span> sum_x_mean_diff)</span>
-<span id="cb2-7"><a href=""></a>se_x <span class="ot">&lt;-</span> s_x <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span>
-<span id="cb2-8"><a href=""></a></span>
-<span id="cb2-9"><a href=""></a>y_mean_diff <span class="ot">&lt;-</span> (y <span class="sc">-</span> (<span class="fu">sum</span>(y) <span class="sc">/</span> <span class="fu">length</span>(y)))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb2-10"><a href=""></a>sum_y_mean_diff <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_mean_diff)</span>
-<span id="cb2-11"><a href=""></a>s_x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((<span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(y)) <span class="sc">*</span> sum_y_mean_diff)</span>
-<span id="cb2-12"><a href=""></a>se_y <span class="ot">&lt;-</span> s_x <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(y))</span>
-<span id="cb2-13"><a href=""></a></span>
-<span id="cb2-14"><a href=""></a>numerator <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fu">mean</span>(y)</span>
-<span id="cb2-15"><a href=""></a>denominator <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(se_x <span class="sc">+</span> se_y)</span>
-<span id="cb2-16"><a href=""></a></span>
-<span id="cb2-17"><a href=""></a>result <span class="ot">&lt;-</span> numerator <span class="sc">/</span> denominator</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(airquality<span class="sc">$</span>Temp[<span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))])</span>
+<span id="cb1-2"><a href=""></a>y <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(airquality<span class="sc">$</span>Temp[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))])</span>
+<span id="cb1-3"><a href=""></a></span>
+<span id="cb1-4"><a href=""></a>x_mean_diff <span class="ot">&lt;-</span> (x <span class="sc">-</span> (<span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1-5"><a href=""></a>sum_x_mean_diff <span class="ot">&lt;-</span> <span class="fu">sum</span>(x_mean_diff)</span>
+<span id="cb1-6"><a href=""></a>s_x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((<span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(x)) <span class="sc">*</span> sum_x_mean_diff)</span>
+<span id="cb1-7"><a href=""></a>se_x <span class="ot">&lt;-</span> s_x <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span>
+<span id="cb1-8"><a href=""></a></span>
+<span id="cb1-9"><a href=""></a>y_mean_diff <span class="ot">&lt;-</span> (y <span class="sc">-</span> (<span class="fu">sum</span>(y) <span class="sc">/</span> <span class="fu">length</span>(y)))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1-10"><a href=""></a>sum_y_mean_diff <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_mean_diff)</span>
+<span id="cb1-11"><a href=""></a>s_x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((<span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(y)) <span class="sc">*</span> sum_y_mean_diff)</span>
+<span id="cb1-12"><a href=""></a>se_y <span class="ot">&lt;-</span> s_x <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(y))</span>
+<span id="cb1-13"><a href=""></a></span>
+<span id="cb1-14"><a href=""></a>numerator <span class="ot">&lt;-</span> <span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb1-15"><a href=""></a>denominator <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(se_x <span class="sc">+</span> se_y)</span>
+<span id="cb1-16"><a href=""></a></span>
+<span id="cb1-17"><a href=""></a>result <span class="ot">&lt;-</span> numerator <span class="sc">/</span> denominator</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="an-improved-script" class="slide level2">
 <h2>A(n) improved script:</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Solar.R</span>
-<span id="cb3-2"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb3-3"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
-<span id="cb3-4"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
-<span id="cb3-5"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
-<span id="cb3-6"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
-<span id="cb3-7"><a href=""></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span>
-<span id="cb3-8"><a href=""></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Solar.R</span>
+<span id="cb2-2"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb2-3"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
+<span id="cb2-4"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
+<span id="cb2-5"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
+<span id="cb2-6"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
+<span id="cb2-7"><a href=""></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span>
+<span id="cb2-8"><a href=""></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -452,14 +456,14 @@ mean of x mean of y
 <section id="can-i-use-other-variables" class="slide level2">
 <h2>Can I use other variables?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="1,2|7,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Ozone</span>
-<span id="cb5-2"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
-<span id="cb5-3"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
-<span id="cb5-4"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
-<span id="cb5-5"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
-<span id="cb5-6"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
-<span id="cb5-7"><a href=""></a>result_ozone_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span>
-<span id="cb5-8"><a href=""></a>result_ozone_wind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="1,2|7,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Ozone</span>
+<span id="cb4-2"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb4-3"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
+<span id="cb4-4"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
+<span id="cb4-5"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
+<span id="cb4-6"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
+<span id="cb4-7"><a href=""></a>result_ozone_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span>
+<span id="cb4-8"><a href=""></a>result_ozone_wind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -478,22 +482,23 @@ mean of x mean of y
 <section id="spot-the-difference" class="slide level2">
 <h2>“Spot the difference”</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Ozone</span>
-<span id="cb7-2"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
-<span id="cb7-3"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
-<span id="cb7-4"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
-<span id="cb7-5"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
-<span id="cb7-6"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
-<span id="cb7-7"><a href=""></a>result_ozone_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span>
-<span id="cb7-8"><a href=""></a></span>
-<span id="cb7-9"><a href=""></a><span class="co"># I just like DO IT ALL AGAIN??</span></span>
-<span id="cb7-10"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Solar.R</span>
-<span id="cb7-11"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb7-12"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
-<span id="cb7-13"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
-<span id="cb7-14"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
-<span id="cb7-15"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
-<span id="cb7-16"><a href=""></a>result_solar_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Variables Ozone and Wind</span></span>
+<span id="cb6-2"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Ozone</span>
+<span id="cb6-3"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb6-4"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
+<span id="cb6-5"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
+<span id="cb6-6"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
+<span id="cb6-7"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
+<span id="cb6-8"><a href=""></a>result_ozone_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span>
+<span id="cb6-9"><a href=""></a></span>
+<span id="cb6-10"><a href=""></a><span class="co"># Variables: Solar.R and Temp.. I just like DO IT ALL AGAIN??</span></span>
+<span id="cb6-11"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Solar.R</span>
+<span id="cb6-12"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb6-13"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
+<span id="cb6-14"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
+<span id="cb6-15"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
+<span id="cb6-16"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
+<span id="cb6-17"><a href=""></a>result_solar_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <aside class="notes">
 <p>playing “spot the difference” felt wrong!</p>
@@ -508,31 +513,66 @@ mean of x mean of y
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section></section>
+<section>
+<section id="a-brief-aside" class="title-slide slide level1 center">
+<h1>A brief aside</h1>
+
 </section>
-<section id="eventuallya-function" class="slide level2">
-<h2>…eventually…a function!</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
-<span id="cb8-2"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
-<span id="cb8-3"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
-<span id="cb8-4"><a href=""></a>  </span>
-<span id="cb8-5"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb8-6"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb8-7"><a href=""></a>  </span>
-<span id="cb8-8"><a href=""></a>  result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, <span class="at">y =</span> is_different_complete)</span>
-<span id="cb8-9"><a href=""></a>  </span>
-<span id="cb8-10"><a href=""></a>  result</span>
-<span id="cb8-11"><a href=""></a>  </span>
-<span id="cb8-12"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="i-didnt-know-how-to-describe-this-problem" class="slide level2">
+<h2>I didn’t know how to describe this problem</h2>
+<p>I asked (something like):</p>
+<blockquote>
+<p>Is there a way for me to change the variable at the top of a script so I can change what variables I use to run a whole script?</p>
+</blockquote>
+<div class="fragment">
+<p>I wish I had started with describing <strong>a need</strong>:</p>
+<blockquote>
+<p>I need to repeat the same task many times to compare different variables, is there a better way?</p>
+</blockquote>
 </div>
+</section>
+<section id="so-eventually-i-wrote-a-function-for-my-missing-data-problem" class="slide level2">
+<h2>So eventually I wrote a function for my missing data problem</h2>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
+<span id="cb7-2"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb7-3"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb7-4"><a href=""></a>  </span>
+<span id="cb7-5"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb7-6"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb7-7"><a href=""></a>  </span>
+<span id="cb7-8"><a href=""></a>  result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, <span class="at">y =</span> is_different_complete)</span>
+<span id="cb7-9"><a href=""></a>  </span>
+<span id="cb7-10"><a href=""></a>  result</span>
+<span id="cb7-11"><a href=""></a>  </span>
+<span id="cb7-12"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section></section>
+<section id="but-how-to-think-about-writing-a-function" class="title-slide slide level1 center">
+<h1>But <strong>how</strong> to think about writing a function?</h1>
+
+</section>
+
+<section id="section-1" class="title-slide slide level1 center" data-background-image="images/draw-the-tick.jpeg" data-background-size="contain">
+<h1></h1>
+
+</section>
+
+<section>
+<section id="section-2" class="title-slide slide level1 center" data-background-image="images/owl-draw.png" data-background-size="contain">
+<h1></h1>
+
 </section>
 <section id="functions-expression" class="slide level2">
 <h2>Functions = expression</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
-<span id="cb9-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Solar.R,</span>
-<span id="cb9-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb9-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb8-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Solar.R,</span>
+<span id="cb8-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb8-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -551,10 +591,10 @@ mean of x mean of y
 <section id="functions-expression-1" class="slide level2">
 <h2>Functions = expression</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
-<span id="cb11-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Ozone,</span>
-<span id="cb11-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb11-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb10-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Ozone,</span>
+<span id="cb10-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb10-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -570,47 +610,14 @@ mean of x mean of y
 </div>
 </div>
 </section>
-<section id="teaching-functions" class="slide level2">
-<h2>Teaching functions?</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb13-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb13-3"><a href=""></a>}</span>
-<span id="cb13-4"><a href=""></a></span>
-<span id="cb13-5"><a href=""></a><span class="fu">celcius_to_farenheit</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 32</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">celcius_to_farenheit</span>(<span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 77</code></pre>
-</div>
-</div>
-<div class="fragment">
-<p><strong>Trivialises</strong> functions</p>
-</div>
-<div class="fragment">
-<p>Functions should be <strong>relevant</strong> to you</p>
-</div>
-<div class="fragment">
-<p>Functions are <strong>expression</strong> they are <strong>ideas</strong></p>
-</div>
-<div class="fragment">
-<p>Functions <strong>manage complexity</strong></p>
-<aside class="notes">
-<p>It doesn’t showcase the power It makes it seem trivial</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</div>
+<section id="writing-code-is-writing" class="slide level2">
+<h2>Writing code is <strong>writing</strong></h2>
+<ul>
+<li class="fragment">Writing takes iteration</li>
+<li class="fragment">Good writing is about good <strong>expression</strong></li>
+<li class="fragment">Good code is <strong>well expressed</strong></li>
+<li class="fragment">So how do we <strong>teach people how to write functions</strong>?</li>
+</ul>
 </section>
 <section id="dry-dont-repeat-yourself" class="slide level2">
 <h2>DRY: Don’t <strong>Repeat</strong> Yourself</h2>
@@ -619,19 +626,19 @@ mean of x mean of y
 </blockquote>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="|1:2|6|8:9|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb17-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb17-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb17-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb17-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb17-6"><a href=""></a>result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
-<span id="cb17-7"><a href=""></a></span>
-<span id="cb17-8"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
-<span id="cb17-9"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
-<span id="cb17-10"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
-<span id="cb17-11"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb17-12"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb17-13"><a href=""></a>result_solar_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="|1:2|6|8:9|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb12-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb12-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb12-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb12-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb12-6"><a href=""></a>result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb12-7"><a href=""></a></span>
+<span id="cb12-8"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb12-9"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb12-10"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb12-11"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb12-12"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb12-13"><a href=""></a>result_solar_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <aside class="notes">
 <p>You’ve only written this out twice But you’ll revisit it more than once You’ve got to manually parse what is different The structure is the same It’s like a game of spot the difference idea: show images where two Where is the difference? - THERE IS NO DIFFERENCE - YOU HAVE WASTED YOUR TIME</p>
@@ -648,62 +655,218 @@ mean of x mean of y
       }</style></aside>
 </div>
 </section>
-<section id="dry-dont-re-read-yourself" class="slide level2">
-<h2>DRY: Don’t <strong>re-read</strong> Yourself*</h2>
+<section id="drry-dont-reread-yourself" class="slide level2">
+<h2>D<strong>RR</strong>Y: Don’t <strong>reread</strong> Yourself*</h2>
 <blockquote>
 <p>If you <strong>re-read</strong> your code 3 times, write a function</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="|1:2|6|8:9|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb18-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb18-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb18-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb18-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb18-6"><a href=""></a>result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
-<span id="cb18-7"><a href=""></a></span>
-<span id="cb18-8"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
-<span id="cb18-9"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
-<span id="cb18-10"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
-<span id="cb18-11"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb18-12"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb18-13"><a href=""></a>result_solar_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="|1:2|6|8:9|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb13-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb13-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb13-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb13-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb13-6"><a href=""></a>result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb13-7"><a href=""></a></span>
+<span id="cb13-8"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb13-9"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb13-10"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb13-11"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb13-12"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb13-13"><a href=""></a>result_solar_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <aside><div>
 <p>*naming credit: Miles McBain</p>
 </div></aside></section>
-<section id="how-to-write-a-function" class="slide level2">
-<h2>How to <strong>write</strong> a function</h2>
+<section id="how-to-designwrite-a-function" class="slide level2">
+<h2>How to <strong>design/write</strong> a function</h2>
 <div class="fragment">
-<p>Functions are tools for <strong>managing complexity</strong></p>
+<p>Functions are tools for <strong>expressing complexity</strong></p>
 </div>
 <div class="fragment">
 <p>AKA as <strong>abstraction</strong> or <strong>abstracting away</strong></p>
 </div>
 <div class="fragment">
-<p>So, <strong>what complexity</strong> do we want to manage?</p>
+<p>So, what <strong>complexity</strong> do we want to <strong>express</strong>?</p>
 </div>
 <div class="fragment">
 <p>What do we want to <strong>abstract away</strong>?</p>
 </div>
 <div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="|1|2|3|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb19-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb19-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb19-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb19-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb19-6"><a href=""></a>result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Two approaches:</p>
+<ol type="1">
+<li class="fragment"><strong>outside</strong>-in</li>
+<li class="fragment"><strong>inside</strong>-out</li>
+</ol>
 </div>
+</section>
+<section id="going-outside-in" class="slide level2">
+<h2>Going outside-in</h2>
+<p>Start with psuedo (fake) code where you <strong>imagine you already wrote it</strong>, asking yourself:</p>
+<ul>
+<li class="fragment">What am I trying to do?</li>
+<li class="fragment">What pieces of information do I need to provide?</li>
+<li class="fragment">What will the output be?</li>
+</ul>
+<div class="fragment">
+<p>And start designing the function.</p>
+</div>
+<div class="fragment">
+<p>Once you are happy with how it looks and how you think it will work, it will (generally) be easier to write the rest.</p>
+</div>
+</section>
+<section id="refresh-what-are-we-trying-to-do" class="slide level2">
+<h2>Refresh: What are we trying to do</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
+<section id="refresh-what-are-we-trying-to-do-1" class="slide level2">
+<h2>Refresh: What are we trying to do</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb14-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb14-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Solar.R))</span>
+<span id="cb14-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb14-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb14-6"><a href=""></a>result_solar_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="going-outside-in-1" class="slide level2">
+<h2>Going outside-in</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>output <span class="ot">&lt;-</span> <span class="fu">what_am_i_trying_to_do</span>(information_piece, another_piece)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>What am I trying to do?</p>
+<ul>
+<li class="fragment">Is variable A statistically different when variable B is missing?</li>
+</ul>
+</div>
+<div class="fragment">
+<p>What pieces of information do I need to provide?</p>
+<ul>
+<li class="fragment">A variable whose <strong>missingness</strong> we are interested in</li>
+<li class="fragment">A variables whose <strong>values</strong> are impacted by missingness</li>
+</ul>
+</div>
+<div class="fragment">
+<p>What will the output be?</p>
+<ul>
+<li class="fragment">A t-test result</li>
+</ul>
+</div>
+</section>
+<section id="going-outside-in-iteration" class="slide level2">
+<h2>Going outside-in: <strong>iteration</strong></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">impact_of_missingness</span>( <span class="co"># does this evoke the action?</span></span>
+<span id="cb16-2"><a href=""></a>  <span class="at">variable_is_missing =</span> airquality<span class="sc">$</span>Solar.R,</span>
+<span id="cb16-3"><a href=""></a>  <span class="at">variable_impacted =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb16-4"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">missing_difference</span>(</span>
+<span id="cb17-2"><a href=""></a>  <span class="at">variable_going_missing =</span> airquality<span class="sc">$</span>Solar.R,</span>
+<span id="cb17-3"><a href=""></a>  <span class="at">variable_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb17-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb18-2"><a href=""></a>  <span class="at">variable_going_missing =</span> airquality<span class="sc">$</span>Solar.R,</span>
+<span id="cb18-3"><a href=""></a>  <span class="at">variable_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb18-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb19-2"><a href=""></a>  <span class="at">variable_missing =</span> airquality<span class="sc">$</span>Solar.R,</span>
+<span id="cb19-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb19-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb20-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Solar.R,</span>
+<span id="cb20-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb20-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="going-outside-in-2" class="slide level2">
+<h2>Going outside-in</h2>
+<p><strong>outside-in</strong> focusses on how the user interacts with your function. This is but one hard part of things.</p>
+<div class="fragment">
+<p>You still need to <strong>zoom in</strong> to the code details.</p>
+</div>
+<div class="fragment">
+<p>The <strong>outside</strong> impacts the inside</p>
+</div>
+<div class="fragment">
+<p>The <strong>inside</strong> impacts the outside</p>
+</div>
+</section>
+<section id="science-engineering" class="slide level2">
+<h2>Science + Engineering</h2>
+<ul>
+<li class="fragment">Balancing: exploring, understanding problem space</li>
+<li class="fragment">Moving between these states</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p>“In science, if you know what you are doing, you should not be doing it. In engineering, if you do not know what you are doing, you should not be doing it. Of course, you seldom, if ever, see either pure state.”</p>
+</blockquote>
+<p>– Richard Hamming, <a href="https://www.amazon.com/dp/1732265178">The Art of Doing Science and Engineering</a></p>
+</div>
+</section>
+<section id="going-up-and-down-the-ladder-of-abstraction" class="slide level2">
+<h2>Going up and down the ladder of abstraction</h2>
+<div class="fragment">
+<blockquote>
+<p>How do we explore? If you move to a new city, you might learn the territory by walking around. Or you might peruse a map. But far more effective than either is both together — a street-level experience with higher-level guidance. Likewise, the most powerful way to gain insight into a system is by moving between levels of abstraction.</p>
+</blockquote>
+<p>– Brett Victor, <a href="https://worrydream.com/LadderOfAbstraction/">“Up and Down the ladder of abstraction”</a></p>
+</div>
+</section>
+<section id="writing-functions-outside-in-then-inside-out" class="slide level2">
+<h2>Writing functions Outside in then Inside-out</h2>
+<ul>
+<li class="fragment">We know what we want the function <strong>signature</strong> to be:</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb21-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Solar.R,</span>
+<span id="cb21-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb21-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li class="fragment">Now let’s go inside</li>
+</ul>
+</div>
+</section>
+<section id="going-inside-out" class="slide level2">
+<h2>Going inside-out</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="|1|2|3|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb22-2"><a href=""></a>when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb22-3"><a href=""></a>when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb22-4"><a href=""></a>is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb22-5"><a href=""></a>is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb22-6"><a href=""></a>result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>Start with the <strong>bones</strong></p>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(Temp, Ozone){</span>
-<span id="cb20-2"><a href=""></a>  <span class="do">## Paste text into body </span></span>
-<span id="cb20-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
+<span id="cb23-2"><a href=""></a><span class="co"># paste into body here</span></span>
+<span id="cb23-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -712,14 +875,14 @@ mean of x mean of y
 <div class="fragment">
 <p>What am I <strong>interested</strong> in?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="|1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(Temp, Ozone){</span>
-<span id="cb21-2"><a href=""></a>  is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb21-3"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb21-4"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb21-5"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb21-6"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb21-7"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
-<span id="cb21-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
+<span id="cb24-2"><a href=""></a>  is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb24-3"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb24-4"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb24-5"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb24-6"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb24-7"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb24-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -727,94 +890,106 @@ mean of x mean of y
 <h2>Writing functions is <strong>writing</strong></h2>
 <p>What do I <strong>name</strong> things?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="|1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, Ozone){</span>
-<span id="cb22-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
-<span id="cb22-3"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb22-4"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb22-5"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb22-6"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb22-7"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
-<span id="cb22-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
+<span id="cb25-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
+<span id="cb25-3"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb25-4"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb25-5"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb25-6"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb25-7"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb25-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="writing-functions-is-writing-2" class="slide level2">
 <h2>Writing functions is <strong>writing</strong></h2>
 <p>Naming things can be <strong>tricky</strong>; that’s OK</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="|1|2|3|4|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
-<span id="cb23-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
-<span id="cb23-3"><a href=""></a>  <span class="co"># when_missing_index &lt;- which(is.na(airquality$Ozone))</span></span>
-<span id="cb23-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
-<span id="cb23-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
-<span id="cb23-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb23-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb23-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
-<span id="cb23-9"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|1|2|3|4|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
+<span id="cb26-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
+<span id="cb26-3"><a href=""></a>  <span class="co"># when_missing_index &lt;- which(is.na(airquality$Ozone))</span></span>
+<span id="cb26-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb26-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb26-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb26-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb26-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb26-9"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="writing-functions-is-writing-3" class="slide level2">
 <h2>Writing functions is <strong>writing</strong></h2>
 <p>We <strong>return</strong> the last thing</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|8|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
-<span id="cb24-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
-<span id="cb24-3"><a href=""></a>  <span class="co"># when_missing_index &lt;- which(is.na(airquality$Ozone))</span></span>
-<span id="cb24-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
-<span id="cb24-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
-<span id="cb24-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb24-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb24-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
-<span id="cb24-9"><a href=""></a>  result_ozone_temp</span>
-<span id="cb24-10"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|8|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
+<span id="cb27-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
+<span id="cb27-3"><a href=""></a>  <span class="co"># when_missing_index &lt;- which(is.na(airquality$Ozone))</span></span>
+<span id="cb27-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb27-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb27-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb27-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb27-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb27-9"><a href=""></a>  result_ozone_temp</span>
+<span id="cb27-10"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="writing-functions-is-writing-4" class="slide level2">
 <h2>Writing functions is <strong>writing</strong></h2>
 <p>Cleaning up <strong>old lettuce</strong> (removing unused comments)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="2,3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
-<span id="cb25-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
-<span id="cb25-3"><a href=""></a>  <span class="co"># when_missing_index &lt;- which(is.na(airquality$Ozone))</span></span>
-<span id="cb25-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
-<span id="cb25-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
-<span id="cb25-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb25-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb25-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
-<span id="cb25-9"><a href=""></a>  result_ozone_temp</span>
-<span id="cb25-10"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="2,3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
+<span id="cb28-2"><a href=""></a>  <span class="co"># is_different &lt;- airquality$Temp</span></span>
+<span id="cb28-3"><a href=""></a>  <span class="co"># when_missing_index &lt;- which(is.na(airquality$Ozone))</span></span>
+<span id="cb28-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb28-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb28-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb28-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb28-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb28-9"><a href=""></a>  result_ozone_temp</span>
+<span id="cb28-10"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="writing-functions-is-writing-5" class="slide level2">
 <h2>Writing functions is <strong>writing</strong></h2>
 <p>Cleaning up <strong>old lettuce</strong> (removing unused comments)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>misstest <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
-<span id="cb26-2"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
-<span id="cb26-3"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
-<span id="cb26-4"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb26-5"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb26-6"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
-<span id="cb26-7"><a href=""></a>  result_ozone_temp</span>
-<span id="cb26-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="|1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(when_missing, is_different){</span>
+<span id="cb29-2"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb29-3"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb29-4"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb29-5"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb29-6"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb29-7"><a href=""></a>  result_ozone_temp</span>
+<span id="cb29-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="writing-functions-is-writing-6" class="slide level2">
 <h2>Writing functions is <strong>writing</strong></h2>
-<p><strong>Name</strong> the function something that <strong>evokes</strong> the <strong>action</strong></p>
-<div class="fragment">
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">before</a></li><li><a href="#tabset-1-2">after</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="1|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
-<span id="cb27-2"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
-<span id="cb27-3"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
-<span id="cb27-4"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb27-5"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb27-6"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
-<span id="cb27-7"><a href=""></a>  result_ozone_temp</span>
-<span id="cb27-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>var_missing <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Ozone</span>
+<span id="cb30-2"><a href=""></a>var_interest <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind</span>
+<span id="cb30-3"><a href=""></a>which_missing <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(var_missing))</span>
+<span id="cb30-4"><a href=""></a>which_complete <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(var_missing))</span>
+<span id="cb30-5"><a href=""></a>var_interest_miss <span class="ot">&lt;-</span> var_interest[which_missing]</span>
+<span id="cb30-6"><a href=""></a>var_interest_complete <span class="ot">&lt;-</span> var_interest[which_complete]</span>
+<span id="cb30-7"><a href=""></a>result_ozone_wind <span class="ot">&lt;-</span> <span class="fu">t.test</span>(var_interest_miss, <span class="at">y =</span> var_interest_complete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div class="fragment">
-<p>You need to <strong>use</strong> the function</p>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>missingness_impact <span class="ot">&lt;-</span> <span class="cf">function</span>(is_different, when_missing){</span>
+<span id="cb31-2"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(when_missing))</span>
+<span id="cb31-3"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(when_missing))</span>
+<span id="cb31-4"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb31-5"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb31-6"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss, is_different_complete)</span>
+<span id="cb31-7"><a href=""></a>  result_ozone_temp</span>
+<span id="cb31-8"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="writing-functions-is-writing-7" class="slide level2">
@@ -822,10 +997,10 @@ mean of x mean of y
 <p>You need to <strong>use</strong> the function</p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
-<span id="cb28-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Ozone,</span>
-<span id="cb28-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb28-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">missingness_impact</span>(</span>
+<span id="cb32-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Ozone,</span>
+<span id="cb32-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb32-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -846,12 +1021,12 @@ mean of x mean of y
 <h2>Writing functions is <strong>writing</strong></h2>
 <p>And <strong>write</strong> the output to a <strong>variable</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>temp_difference_ozone_missing <span class="ot">&lt;-</span> <span class="fu">missingness_impact</span>(</span>
-<span id="cb30-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Ozone,</span>
-<span id="cb30-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb30-4"><a href=""></a>)</span>
-<span id="cb30-5"><a href=""></a></span>
-<span id="cb30-6"><a href=""></a>temp_difference_ozone_missing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>temp_difference_ozone_missing <span class="ot">&lt;-</span> <span class="fu">missingness_impact</span>(</span>
+<span id="cb34-2"><a href=""></a>  <span class="at">when_missing =</span> airquality<span class="sc">$</span>Ozone,</span>
+<span id="cb34-3"><a href=""></a>  <span class="at">is_different =</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb34-4"><a href=""></a>)</span>
+<span id="cb34-5"><a href=""></a></span>
+<span id="cb34-6"><a href=""></a>temp_difference_ozone_missing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -869,12 +1044,17 @@ mean of x mean of y
 </section>
 <section id="writing-functions-is-writing-9" class="slide level2">
 <h2>Writing functions is <strong>writing</strong></h2>
-<p>A <strong>process</strong> for writing a function</p>
+<p>Outside in:</p>
+<ul>
+<li class="fragment">What am I trying to do?</li>
+<li class="fragment">What pieces of information do I need to provide?</li>
+<li class="fragment">What will the output be?</li>
+</ul>
+<p>Inside out:</p>
 <ul>
 <li class="fragment"><strong>Copy</strong> text into body</li>
 <li class="fragment"><strong>Identify</strong> complexity to manage</li>
 <li class="fragment"><strong>Abstract</strong> the complexity</li>
-<li class="fragment">Writing functions is <strong>iterative</strong>, Just like <strong>regular writing</strong></li>
 </ul>
 </section>
 <section id="circling-back-to-dry" class="slide level2">
@@ -887,16 +1067,16 @@ mean of x mean of y
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="co"># Tell me why this is a bad idea!</span></span>
-<span id="cb32-2"><a href=""></a>blindly_functionalising <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb32-3"><a href=""></a>  is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
-<span id="cb32-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb32-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
-<span id="cb32-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
-<span id="cb32-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
-<span id="cb32-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss,</span>
-<span id="cb32-9"><a href=""></a>                              is_different_complete)</span>
-<span id="cb32-10"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="co"># Tell me why this is a bad idea!</span></span>
+<span id="cb36-2"><a href=""></a>blindly_functionalising <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb36-3"><a href=""></a>  is_different <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Temp</span>
+<span id="cb36-4"><a href=""></a>  when_missing_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb36-5"><a href=""></a>  when_complete_index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone))</span>
+<span id="cb36-6"><a href=""></a>  is_different_miss <span class="ot">&lt;-</span> is_different[when_missing_index]</span>
+<span id="cb36-7"><a href=""></a>  is_different_complete <span class="ot">&lt;-</span> is_different[when_complete_index]</span>
+<span id="cb36-8"><a href=""></a>  result_ozone_temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(is_different_miss,</span>
+<span id="cb36-9"><a href=""></a>                              is_different_complete)</span>
+<span id="cb36-10"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <aside class="notes">
 <p>And this is bad - WHY is this bad?</p>
@@ -953,9 +1133,9 @@ mean of x mean of y
 <div class="fragment">
 <p>What does this function <strong>do</strong>?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>myfun <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb33-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb33-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>myfun <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb37-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb37-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -963,25 +1143,25 @@ mean of x mean of y
 <h2>Naming things is <strong>hard</strong></h2>
 <p>Converting temperature?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>temperature_conversion <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb34-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb34-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>temperature_conversion <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb38-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb38-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>Clearly state <code>input_to_output()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb35-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb35-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb39-2"><a href=""></a>  (x <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb39-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
 <p>Name argument and intermediate variables</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(celcius){</span>
-<span id="cb36-2"><a href=""></a>  farenheit <span class="ot">&lt;-</span> (celcius <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb36-3"><a href=""></a>  farenheit</span>
-<span id="cb36-4"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(celcius){</span>
+<span id="cb40-2"><a href=""></a>  farenheit <span class="ot">&lt;-</span> (celcius <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb40-3"><a href=""></a>  farenheit</span>
+<span id="cb40-4"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -993,9 +1173,9 @@ mean of x mean of y
 <section id="what-makes-functions-hard" class="slide level2">
 <h2>What makes functions <strong>hard</strong>?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(celcius){</span>
-<span id="cb37-2"><a href=""></a>  (celcius <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb37-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>celcius_to_farenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(celcius){</span>
+<span id="cb41-2"><a href=""></a>  (celcius <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb41-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>The idea of inputs and outputs isn’t hard</p>
@@ -1106,15 +1286,32 @@ mean of x mean of y
 <h1>Demo: Process of cleaning up a data analysis</h1>
 
 <img data-src="images/repo-ozed.png" class="r-stretch"></section>
-<section id="section-1" class="slide level2" data-background-image="images/abs-education-data-markup.png" data-background-size="contain">
+<section id="section-3" class="slide level2" data-background-image="images/abs-education-data-markup.png" data-background-size="contain">
 <h2></h2>
 </section></section>
+<section id="moving-up-and-down-the-ladder-of-abstraction" class="title-slide slide level1 center">
+<h1>Moving up and down the ladder of abstraction</h1>
+<ul>
+<li class="fragment">Go to function definition
+<ul>
+<li class="fragment">Cmd + Click/ Ctrl + F12</li>
+<li class="fragment">Cmd/Ctrl + .</li>
+</ul></li>
+<li class="fragment">Explore and debug functions
+<ul>
+<li class="fragment">browser()</li>
+<li class="fragment">debugonce()</li>
+</ul></li>
+</ul>
+</section>
+
 <section id="debugging-should-be-taught-with-functions" class="title-slide slide level1 center">
 <h1>Debugging should be taught with functions</h1>
 <ul>
 <li class="fragment">Otherwise we build a box <strong>we can’t look inside</strong> and fix</li>
 <li class="fragment">Or give power tools <strong>without safety equipment</strong></li>
 <li class="fragment">Or writing with software that writes <strong>un-editable PDFs</strong></li>
+<li class="fragment">A one-way elevator in a skyscraper</li>
 <li class="fragment">We need to teach what happens when things go wrong</li>
 </ul>
 </section>
@@ -1125,6 +1322,7 @@ mean of x mean of y
 <li class="fragment">An error when writing can feel like punishment</li>
 <li class="fragment">But hanging out with errors is a normal state</li>
 <li class="fragment">It’s like an expression problem in your writing</li>
+<li class="fragment">You must be able to move up and down the ladder of abstraction</li>
 </ul>
 </section>
 
@@ -1132,24 +1330,24 @@ mean of x mean of y
 <section id="using-browser" class="title-slide slide level1 center">
 <h1>Using <code>browser()</code></h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="co"># example function code here - something useful though</span></span>
-<span id="cb38-2"><a href=""></a>tidy_education <span class="ot">&lt;-</span> <span class="cf">function</span>(data, names){</span>
-<span id="cb38-3"><a href=""></a>  names <span class="ot">&lt;-</span> <span class="fu">trimws</span>(names)</span>
-<span id="cb38-4"><a href=""></a>  <span class="fu">browser</span>() <span class="co"># jump into this point in the function</span></span>
-<span id="cb38-5"><a href=""></a>  <span class="co"># "n" Next line</span></span>
-<span id="cb38-6"><a href=""></a>  tidied <span class="ot">&lt;-</span> </span>
-<span id="cb38-7"><a href=""></a>  <span class="co"># "s" Step into highlighted function</span></span>
-<span id="cb38-8"><a href=""></a>  combined <span class="ot">&lt;-</span> <span class="fu">combine_custom_data</span>(tidied, data)</span>
-<span id="cb38-9"><a href=""></a>  <span class="co"># "f" Finish execution of loop or function</span></span>
-<span id="cb38-10"><a href=""></a>  <span class="co"># "Q" Quit browser</span></span>
-<span id="cb38-11"><a href=""></a>  <span class="co"># "help" - loads a list of helper code</span></span>
-<span id="cb38-12"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="co"># example function code here - something useful though</span></span>
+<span id="cb42-2"><a href=""></a>tidy_education <span class="ot">&lt;-</span> <span class="cf">function</span>(data, names){</span>
+<span id="cb42-3"><a href=""></a>  names <span class="ot">&lt;-</span> <span class="fu">trimws</span>(names)</span>
+<span id="cb42-4"><a href=""></a>  <span class="fu">browser</span>() <span class="co"># jump into this point in the function</span></span>
+<span id="cb42-5"><a href=""></a>  <span class="co"># "n" Next line</span></span>
+<span id="cb42-6"><a href=""></a>  tidied <span class="ot">&lt;-</span> </span>
+<span id="cb42-7"><a href=""></a>  <span class="co"># "s" Step into highlighted function</span></span>
+<span id="cb42-8"><a href=""></a>  combined <span class="ot">&lt;-</span> <span class="fu">combine_custom_data</span>(tidied, data)</span>
+<span id="cb42-9"><a href=""></a>  <span class="co"># "f" Finish execution of loop or function</span></span>
+<span id="cb42-10"><a href=""></a>  <span class="co"># "Q" Quit browser</span></span>
+<span id="cb42-11"><a href=""></a>  <span class="co"># "help" - loads a list of helper code</span></span>
+<span id="cb42-12"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="section-2" class="slide level2" data-background-image="images/roger-user-developer-spectrum.png" data-background-size="contain">
+<section id="section-4" class="slide level2" data-background-image="images/roger-user-developer-spectrum.png" data-background-size="contain">
 <h2></h2>
 </section>
-<section id="section-3" class="slide level2" data-background-image="images/hadley-practice-programmer.png" data-background-size="contain">
+<section id="section-5" class="slide level2" data-background-image="images/hadley-practice-programmer.png" data-background-size="contain">
 <h2></h2>
 </section>
 <section id="practitioner-programmer" class="slide level2">
@@ -1194,7 +1392,7 @@ mean of x mean of y
 <p>Tell a story about how I was taught debugging when I first started programming and I just did not understand the reason why I would care. The reason it turns out - is that I didn’t yet know about the idea of interactive vs non-interactive, or rather - the practitioner-programmer spectrum. And I guess that this is summarised by a nice slide from Hadley (<a href="https://www.youtube.com/watch?v=Qne86lxjgtg" class="uri">https://www.youtube.com/watch?v=Qne86lxjgtg</a>) - “you hear your code scream” vs “things break and people scream at you”.</p>
 <p>Hadley talks about this idea of “code is a conversation” - when things break, or don’t work, if you’re working in this script-land, then you know when this breaks, and you might be able to jump back into things.</p>
 <p>But if you’re in programmer land, there’s a wall between you and your code…sometimes.</p>
-<p>Summarise by talking about how we slide from the user &lt;–&gt; developer seamlessly. This is actually what R is designed to do!:</p>
+<p>Summarise by talking about how we slide from the user &lt;–&gt; developer seamlessly. This is actually what R is designed to do!</p>
 
 <img data-src="images/clipboard-2863518647.png" class="r-stretch"></section>
 
@@ -1212,23 +1410,35 @@ mean of x mean of y
 <section id="convey_key_ideas" class="title-slide slide level1 center">
 <h1><code>convey_key_ideas()</code></h1>
 <ul>
+<li class="fragment"><strong>Writing</strong> functions</li>
 <li class="fragment"><strong>Good</strong> functions</li>
 <li class="fragment"><strong>Teaching</strong> functions</li>
 <li class="fragment">My <strong>challenge</strong> to you</li>
 </ul>
 </section>
 
+<section id="writing-functions" class="title-slide slide level1 center">
+<h1><strong>Writing</strong> functions</h1>
+<ol type="1">
+<li class="fragment">Start <strong>outside</strong>-in</li>
+<li class="fragment">Then <strong>inside</strong>-out</li>
+<li class="fragment">Outside &lt;–&gt; Inside is key to understanding</li>
+<li class="fragment">We must go up and down the ladder of abstraction (street level to map level)</li>
+<li class="fragment">Know how to debug</li>
+</ol>
+</section>
+
 <section id="good-functions" class="title-slide slide level1 center">
 <h1><strong>Good</strong> functions</h1>
 <ol type="1">
 <li class="fragment">Manage <strong>complexity</strong></li>
-<li class="fragment">Explain and express <strong>ideas</strong></li>
+<li class="fragment">Explain and <strong>express</strong> ideas</li>
 <li class="fragment">Can be <strong>individually reasoned</strong> with</li>
 <li class="fragment">Take <strong>iteration</strong></li>
 </ol>
 </section>
 
-<section id="teaching-functions-1" class="title-slide slide level1 center">
+<section id="teaching-functions" class="title-slide slide level1 center">
 <h1><strong>Teaching</strong> functions</h1>
 <ul>
 <li class="fragment">Emphasise using functions to <strong>express ideas</strong>
@@ -1238,6 +1448,7 @@ mean of x mean of y
 <li class="fragment">Demonstrate <strong>process</strong>
 <ul>
 <li class="fragment">Demos &amp; writing</li>
+<li class="fragment">Moving from outside-in to inside-out</li>
 </ul></li>
 <li class="fragment">Try and use practical functions, not only <strong>toy</strong> ones</li>
 <li class="fragment">Teach <strong>debugging</strong> alongside functions</li>
@@ -1306,6 +1517,7 @@ mean of x mean of y
 <li class="fragment"><a href="https://design.tidyverse.org/"><strong>Tidy Design Principles</strong></a></li>
 <li class="fragment"><a href="https://www.stat.auckland.ac.nz/~ihaka/downloads/lexical.pdf"><strong>Lexical Scope and Statistical Computing</strong></a></li>
 <li class="fragment"><a href="https://stat545.com/functions-part1.html"><strong>stat545 chapter on functions</strong></a></li>
+<li class="fragment"><a href="https://worrydream.com/LadderOfAbstraction/"><strong>Up and Down the Ladder of Abstraction</strong></a></li>
 </ul>
 </div></div>
 </section>
@@ -1320,7 +1532,7 @@ mean of x mean of y
 
 <section id="learning-more" class="title-slide slide level1 center">
 <h1>Learning more</h1>
-<p><svg viewbox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#f0a800;" xmlns="http://www.w3.org/2000/svg"> <path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"></path> </svg> <a href=""><strong>talk link</strong></a></p>
+<p><svg viewbox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#f0a800;" xmlns="http://www.w3.org/2000/svg"> <path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"></path> </svg> <a href="https://njtierney.github.io/talk-funfun-slc/#/title-slide">njtierney.github.io/talk-funfun-slc</a></p>
 <p><svg viewbox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#f0a800;" xmlns="http://www.w3.org/2000/svg"> <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path> </svg> njtierney</p>
 <p><svg viewbox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#f0a800;" xmlns="http://www.w3.org/2000/svg"> <path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"></path> </svg> nicholas.tierney@gmail.com</p>
 </section>
@@ -1345,11 +1557,6 @@ mean of x mean of y
 <li class="fragment">Does <code>debug(function_name)</code> <strong>once</strong></li>
 </ul></li>
 </ul>
-</section>
-
-<section id="good-function-bad-function" class="title-slide slide level1 center">
-<h1>Good function bad function</h1>
-
 </section>
 
 <section>
