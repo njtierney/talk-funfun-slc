@@ -1,6 +1,6 @@
 ---
 title: "Practical Functions: <br>**Practically Magic**"
-subtitle: "Salt Lake City R User Group<br>2025-08-08(09)"
+subtitle: "Salt Lake City R User Group<br>2025-08-07(08)"
 author: "Nicholas Tierney"
 institute: "Statistical Consultant<br>nipaluna, lutruwita (Hobart, Tasmania)"
 format: 
