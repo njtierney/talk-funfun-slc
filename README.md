@@ -2,35 +2,43 @@
 
 # Abstract
 
-I think the highest value skillset in statistical programming is knowing how to write good functions. Functions are often taught as a tool to avoid repetition using the mnemonic DRY: Don't Repeat Yourself. Whilst DRY is both true and real, I think functions are at their best when they encapsulate expression and are easy to reason with. That is, DRY is sufficient, but not necessary. Writing good functions is more than esoteric aesthetics. We need to be able to reason with our code in statistics. We often don't have the capacity to write tests to show our code is "correct". Instead, we need to rely on our ability to reason with, trust, and verify that the code works as it should. I believe writing good functions that encapsulate expressions and are able to be reasoned with are how we can ensure our code, and therefore our methods, and our analyses, work as they should. In this talk I will discuss some practical ideas on writing a good function, how to identify bad ones, and how to move between the two states. 
+I think the highest value skillset in statistical programming is knowing how to write good functions. Functions are often taught as a tool to avoid repetition using the mnemonic DRY: Don't Repeat Yourself. Whilst DRY is both true and real, I think functions are at their best when they encapsulate expression and are easy to reason with. That is, DRY is sufficient, but not necessary. Writing good functions is more than esoteric aesthetics. We need to be able to reason with our code in statistics. We often don't have the capacity to write tests to show our code is "correct". Instead, we need to rely on our ability to reason with, trust, and verify that the code works as it should. I believe writing good functions that encapsulate expressions and are able to be reasoned with are how we can ensure our code, and therefore our methods, and our analyses, work as they should. In this talk I will discuss some practical ideas on writing a good function, discussing ideas on going outside-in, and inside-out, debugging, and teaching functions
 
 # Slide available [here](https://njtierney.github.io/talk-funfun-slc/#/title-slide)
 
-# Take home messages 
+# Take home messages
 
-**Good** functions
+# **Writing** functions
+
+1. Start **outside**-in (name, inputs, output)
+2. Then **inside**-out
+3. Outside <--> Inside is key to understanding
+4. We must go up and down the ladder of abstraction (street level to map level)
+5. Know how to debug
+
+# **Good** functions
 
 1.  Manage **complexity**
-2.  Explain and express **ideas**
+2.  Explain and **express** ideas
 3.  Can be **individually reasoned** with
 4.  Take **iteration**
 
-**Teaching** functions
+# **Teaching** functions
 
 -   Emphasise using functions to **express ideas**
     -   Avoiding repetion is a symptom of needing a function
 -   Demonstrate **process**
     -   Demos & writing
+    -   Moving from outside-in to inside-out
 -   Try and use practical functions, not only **toy** ones
 -   Teach **debugging** alongside functions
 
-My **challenge** to you
+# My **challenge** to you
 
 -   Start **sprinkling** functions into daily use
 -   use `browser()` or other debugging tools
 -   Read other people's code - peer review!
 -   Question me - does this make sense?
-
 
 # Thanks
 
@@ -58,18 +66,9 @@ My **challenge** to you
 -   [**stat545 chapter on functions**](https://stat545.com/functions-part1.html)
 -   [**Up and Down the Ladder of Abstraction**](https://worrydream.com/LadderOfAbstraction/)
 
-
 # Colophon
 
-  - Slides made using [quarto](https://github.com/quarto-dev/quarto)
-  
-Eventually, this theme will add these features in:
-
-  - Colours taken + modified from [lorikeet theme from
-    ochRe](https://github.com/ropenscilabs/ochRe)
-  - Header font is **Josefin Sans**
-  - Body text font is **Montserrat**
-  - Code font is **Fira Mono**
+- Slides made using [quarto](https://github.com/quarto-dev/quarto)
 
 
 # Bio
