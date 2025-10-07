@@ -448,17 +448,18 @@ Two approaches:
 
 Start with psuedo (fake) code where you __imagine you already wrote it__, asking yourself:
 
-- What am I trying to do? 
-- What pieces of information do I need to provide?
-- What will the output be?
+- **name**: What am I trying to do? What **evokes** the action
+- **inputs**: What pieces of information do I need to provide?
+- **output**: What are we returning?
 
-. . . 
-
-And start designing the function.
 
 . . . 
 
 Once you are happy with how it looks and how you think it will work, it will (generally) be easier to write the rest.
+
+. . . 
+
+(I embraced this approach thanks to [Earo Wang](https://earo.me/) and [Mitchell O'Hara-Wild](https://mitchelloharawild.com/).)
 
 ## Refresh: What are we trying to do
 
@@ -494,20 +495,20 @@ output <- what_am_i_trying_to_do(information_piece, another_piece)
 
 . . . 
 
-What am I trying to do?
+**name**: What am I trying to do? What **evokes** the action
 
-- Is variable A statistically different when variable B is missing?
+- Is **variable A** statistically different when **variable B is missing**?
 
 . . . 
 
-What pieces of information do I need to provide?
+**inputs**: What pieces of information do I need to provide?
 
   - A variable whose **missingness** we are interested in
   - A variables whose **values** are impacted by missingness
 
 . . .
 
-What will the output be?
+**output**: What are we returning?
 
 - A t-test result
 
@@ -525,7 +526,7 @@ impact_of_missingness( # does this evoke the action?
 
 ```{r}
 #| eval: false
-missing_difference(
+missing_difference( # does this evoke the action?
   variable_going_missing = airquality$Solar.R,
   variable_different = airquality$Temp
 )
@@ -536,7 +537,7 @@ missing_difference(
 
 ```{r}
 #| eval: false
-missingness_impact(
+missingness_impact( # this feels good!
   variable_going_missing = airquality$Solar.R,
   variable_different = airquality$Temp
 )
@@ -557,7 +558,7 @@ missingness_impact(
 ```{r}
 #| eval: false
 missingness_impact(
-  when_missing = airquality$Solar.R,
+  when_missing = airquality$Solar.R, # more succinct
   is_different = airquality$Temp
 )
 ```
@@ -599,7 +600,7 @@ The **inside** impacts the outside
 
 -- Brett Victor, ["Up and Down the ladder of abstraction"](https://worrydream.com/LadderOfAbstraction/)
 
-## Writing functions Outside in then Inside-out
+## **Writing** functions: **Outside**-in then **Inside**-out
 
 - We know what we want the function **signature** to be:
 
@@ -616,7 +617,7 @@ missingness_impact(
 - Now let's go inside
 
 
-## Going inside-out
+## Going **inside**-out
 
 ```{r}
 #| code-line-numbers: "|1|2|3|6"
@@ -807,13 +808,15 @@ temp_difference_ozone_missing
 
 ## Writing functions is **writing**
 
-Outside in:
+**Outside** in:
 
-- What am I trying to do?
-- What pieces of information do I need to provide?
-- What will the output be?
+- **name**: What am I trying to do? What **evokes** the action
+- **inputs**: What pieces of information do I need to provide?
+- **output**: What are we returning?
 
-Inside out:
+. . . 
+
+**Inside** out:
 
 -   **Copy** text into body
 -   **Identify** complexity to manage
@@ -1037,7 +1040,7 @@ Miles' SSA talk: Let's borrow some key ideas from how we structure books: table 
 
 ##  {background-image="images/abs-education-data-markup.png" background-size="contain"}
 
-# Moving up and down the ladder of abstraction
+# Demo: up and down the ladder of abstraction
 
 - Go to function definition
   - Cmd + Click/ Ctrl + F12
@@ -1130,7 +1133,7 @@ Summarise by talking about how we slide from the user \<--\> developer seamlessl
 
 # **Writing** functions
 
-1. Start **outside**-in
+1. Start **outside**-in (name, inputs, output)
 2. Then **inside**-out
 3. Outside <--> Inside is key to understanding
 4. We must go up and down the ladder of abstraction (street level to map level)
